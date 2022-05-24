@@ -11,16 +11,16 @@
         android:layout_width="128dp"
         android:layout_height="34dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="92dp"
         android:background="#00FFFFFF"
         app:srcCompat="@drawable/logo2" />
 
     <EditText
         android:id="@+id/login_id"
-        android:layout_width="320dp"
+        android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="283dp"
+        android:layout_marginTop="183dp"
         android:background="@drawable/border_round"
         android:hint="아이디"
         android:textColor="#979797"
@@ -28,10 +28,10 @@
 
     <EditText
         android:id="@+id/login_password"
-        android:layout_width="320dp"
+        android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="349dp"
+        android:layout_marginTop="249dp"
         android:background="@drawable/border_round"
         android:hint="비밀번호"
         android:textColor="#979797"
@@ -39,10 +39,10 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="447dp"
+        android:layout_marginTop="347dp"
         android:background="@drawable/login_btn"
         android:text="로그인"
         android:textColor="#FFFFFF"
@@ -55,20 +55,29 @@
         android:layout_height="14dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="524dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="424dp"
         android:text="혹시 노그로가 처음이신가요?"
         android:textColor="#979797"
         android:textSize="12dp" />
 
-    <TextView
-        android:id="@+id/sign_in"
-        android:layout_width="44dp"
-        android:layout_height="14dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="524dp"
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="80dp"
+        android:layout_height="18dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="424dp"
         android:layout_toRightOf="@id/textView"
+        android:background="@drawable/login_btn"
         android:text="회원가입"
-        android:textColor="#979797"
+        android:textColor="#FFFFFF"
         android:textSize="12dp" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_signin_btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="487dp"/>
 </RelativeLayout>

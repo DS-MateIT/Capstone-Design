@@ -21,11 +21,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".LoginActivity"></activity>
+
         <activity android:name=".SubActivityTrigger"></activity>
         <activity android:name=".SubActivityPassword"></activity>
         <activity android:name=".SubActivityTrigger_add"></activity>
-
-
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>
