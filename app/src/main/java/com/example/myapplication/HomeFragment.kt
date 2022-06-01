@@ -1,8 +1,8 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import android.widget.Adapter
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -10,13 +10,26 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class HomeFragment: Fragment() {
     val binding by lazy { FragmentHomeBinding.inflate(layoutInflater)}
-    private lateinit var rv : RecyclerView
-    private lateinit var RecentItemAdapter : Adapter
-    private lateinit var favoriteItemAdapter: Adapter
+    private lateinit var rv_recent : RecyclerView  // 최근 시청한 영상
+    private lateinit var rv_favor : RecyclerView   // 선호 카테고리 영상
+    var videoItems = ArrayList<VideoItem>()
+    var list_recent = ArrayList<RecentItemData>()
+    var adapter: VideoAdapter? = null
+    //var adapter: RecentItemAdapter? = null
+    var db = Firebase.database
+    var storageRef = Firebase.storage.reference
+    var videos: DatabaseReference? = null
+
+    //private lateinit var RecentItemAdapter : Adapter
+    //private lateinit var favoriteItemAdapter: Adapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,43 +40,70 @@ class HomeFragment: Fragment() {
         val toolbar : Toolbar = view.findViewById(R.id.toolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
 
+        // db에 썸네일 이미지, 영상 저장
+        /*videos = db.getReference("videos")
+        for(num in 0..14){
+            var fileName = "thumb_${num}.jpg"
 
+            // storage에서 이미지 불러옴
+            var imagesRef = storageRef.child("images/${fileName}").downloadUrl.addOnSuccessListener {
+                videos!!.child("$num").child("thumb").setValue(it.toString())
+            }
+
+            // 영상 불러옴
+            fileName = "video_${num}.mp4"
+            var videosRef = storageRef.child("sources/${fileName}").downloadUrl.addOnSuccessListener {
+                videos!!.child("$num").child("sources").setValue(it.toString())
+            }
+
+            //Log.w("ITEMS: ", imagesRef!!.name)
+        }*/
 
         //최근 동영상 어댑터 1
-        rv = view.findViewById(R.id.item_recent)
+        rv_recent= view.findViewById(R.id.item_recent)
 
-        val list_recent = ArrayList<recentItemData>() //임시 데이터
+        //val list_recent = ArrayList<recentItemData>() //임시 데이터
+/*
         list_recent.add(recentItemData(null, "70%","한소희","어그로"))
         list_recent.add(recentItemData(null, "70%","한소희","어그로"))
         list_recent.add(recentItemData(null, "70%","한소희","어그로"))
         list_recent.add(recentItemData(null, "70%","한소희","어그로"))
         list_recent.add(recentItemData(null, "70%","한소희","어그로"))
-
-        val adapter1 = RecentItemAdapter(list_recent)
-        rv.adapter = adapter1
-
-
-
+*/
+        //val adapter1 = RecentItemAdapter(list_recent)
+        loadrecyclerViewData()
+        //rv.adapter = adapter
 
         //선호 동영상 어댑터 2
-        rv = view.findViewById(R.id.item_favorite)
+        rv_favor = view.findViewById(R.id.item_favorite)
 
-        val list_favorite = ArrayList<favoriteItemData>() //임시 데이터
-        list_favorite.add(favoriteItemData(null))
-        list_favorite.add(favoriteItemData(null))
-        list_favorite.add(favoriteItemData(null))
-        list_favorite.add(favoriteItemData(null))
-        list_favorite.add(favoriteItemData(null))
-
-        val adapter2 = FavoriteItemAdapter(list_favorite)
-        rv.adapter = adapter2
-
-
-
+        loadrecyclerViewData()
 
         setHasOptionsMenu(true)
         return view
 
+    }
+
+    private fun loadrecyclerViewData() {
+        //val reference = FirebaseDatabase.getInstance().getReference("videos")
+        val reference = Firebase.database.getReference("videos")
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                videoItems.clear()
+                //비디오 플레이어
+                for (dataSnapshot1 in dataSnapshot.children) {
+                    val item: VideoItem? = dataSnapshot1.getValue(VideoItem::class.java)
+                    if (item != null) {
+                        videoItems.add(item)
+                    }
+                    adapter = VideoAdapter(requireContext(), videoItems)
+                    rv_recent.adapter = adapter
+                    rv_favor.adapter = adapter
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
