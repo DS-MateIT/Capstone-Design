@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_theme">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_small"
+            android:contentDescription="logo"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <VideoView
+        android:id="@+id/searchVideo"
+        android:layout_width="360dp"
+        android:layout_height="190dp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="제가 유튜브에서 교환을 안하는 이유...사기교환 당한것 같아요...ㅠㅠ 안녕하세요 반갑습"
+                android:textColor="#FFFFFF"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="13dp"
+                android:src="@drawable/bookmark_empty" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="20dp"
+                android:text="조회수"
+                android:textColor="#FFFFFF"
+                android:textSize="11dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="453,333"
+                android:textColor="#FFFFFF"
+                android:textSize="11dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="회"
+                android:textColor="#FFFFFF"
+                android:textSize="11dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="26dp"
+                android:text="2021.2.9"
+                android:textColor="#FFFFFF"
+                android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/rate3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="91dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/border_redround"
+                android:text="일치율 30%"
+                android:textColor="#FFFFFF"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="12dp"
+        android:background="#FFFFFF"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="34dp"
+            android:text="키워드 : "
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/rate4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:text="택배사기"
+            android:background="@drawable/border_round"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="27dp"
+            android:text="와 해당내용은"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/keyword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginLeft="1dp"
+            android:text="30%"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="27dp"
+            android:text="일치하므로"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="관련없는 영상"
+            android:textStyle="bold"
+            android:textColor="#FF5959"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="으로 추정됩니다."
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="27dp"
+            android:text="한눈에보기"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="17dp" />
+        <ImageView
+            android:layout_width="320dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center"
+            android:background="@color/text"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

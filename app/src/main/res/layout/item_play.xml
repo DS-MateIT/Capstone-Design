@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="10dp"
+    android:background="#1F1E1E"
+    android:orientation="vertical">
+
+    <VideoView
+        android:id="@+id/searchVideo"
+        android:layout_width="360dp"
+        android:layout_height="190dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="제가 유튜브에서 교환을 안하는 이유...사기교환 당한것 같아요...ㅠㅠ 안녕하세요 반갑습"
+            android:textColor="#FFFFFF"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="13dp"
+            android:src="@drawable/bookmark_empty" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="조회수"
+            android:textColor="#FFFFFF"
+            android:textSize="11dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="453,333"
+            android:textColor="#FFFFFF"
+            android:textSize="11dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="회"
+            android:textColor="#FFFFFF"
+            android:textSize="11dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="26dp"
+            android:text="2021.2.9"
+            android:textColor="#FFFFFF"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@+id/rate3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="91dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/border_redround"
+            android:text="일치율 30%"
+            android:textColor="#FFFFFF"
+            android:textSize="11dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

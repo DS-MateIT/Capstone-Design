@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_theme">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_small"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/arrow_left" />
+
+        <TextView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/border_grround"
+            android:text="택배 사기"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="33dp"
+            android:src="@drawable/search" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/border_grayrect"
+            android:text="필터링 게시글"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/arrow_down" />
+
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_search"
+        android:orientation="vertical">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>
