@@ -21,9 +21,9 @@ class HomeFragment: Fragment() {
     private lateinit var rv_recent : RecyclerView  // 최근 시청한 영상
     private lateinit var rv_favor : RecyclerView   // 선호 카테고리 영상
     var videoItems = ArrayList<VideoItem>()
-    var list_recent = ArrayList<RecentItemData>()
-    var adapter: VideoAdapter? = null
-    //var adapter: RecentItemAdapter? = null
+    var list_recent = ArrayList<VideoItem>()
+    //var adapter: VideoAdapter? = null
+    var adapter: RecentItemAdapter? = null
     var db = Firebase.database
     var storageRef = Firebase.storage.reference
     var videos: DatabaseReference? = null
@@ -40,7 +40,7 @@ class HomeFragment: Fragment() {
         val toolbar : Toolbar = view.findViewById(R.id.toolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
 
-        // db에 썸네일 이미지, 영상 저장
+        // storage로부터 데이터를 가져와 db에 저장
         /*videos = db.getReference("videos")
         for(num in 0..14){
             var fileName = "thumb_${num}.jpg"
@@ -89,15 +89,16 @@ class HomeFragment: Fragment() {
         val reference = Firebase.database.getReference("videos")
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                videoItems.clear()
-                //비디오 플레이어
+                list_recent.clear()
+                // db 데이터를 가져와서 그 중 썸네일 이미지를 recyclerview에 표시
                 for (dataSnapshot1 in dataSnapshot.children) {
                     val item: VideoItem? = dataSnapshot1.getValue(VideoItem::class.java)
                     if (item != null) {
-                        videoItems.add(item)
+                        list_recent.add(item)
                     }
-                    adapter = VideoAdapter(requireContext(), videoItems)
+                    adapter = RecentItemAdapter(requireContext(), list_recent)
                     rv_recent.adapter = adapter
+
                     rv_favor.adapter = adapter
                 }
             }

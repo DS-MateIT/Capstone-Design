@@ -9,7 +9,7 @@
     android:background="#1F1E1E"
     android:orientation="vertical">
 
-    <com.google.android.exoplayer2.ui.PlayerView
+    <ImageView
         android:id="@+id/recentVideo"
         android:layout_width="220dp"
         android:layout_height="132dp" />

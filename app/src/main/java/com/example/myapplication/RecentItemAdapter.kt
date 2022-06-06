@@ -2,6 +2,7 @@ package com.example.myapplication
 
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class RecentItemAdapter(var context: Context, private val items: ArrayList<RecentItemData> ) :
+class RecentItemAdapter(var context: Context, private val items: ArrayList<VideoItem> ) :
     RecyclerView.Adapter<RecentItemAdapter.VH>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,13 +27,17 @@ class RecentItemAdapter(var context: Context, private val items: ArrayList<Recen
 
     //생성된 view에 보여줄 데이터를 설정
     override fun onBindViewHolder(holder: VH, position: Int) {
+        val vh = holder
         val item = items[position]
+        // Glide로 썸네일 이미지 가져오기
         Glide.with(holder.itemView)
-            .load(items.get(position).Image)
+            .load(items.get(position).thumb)   // db의 thumb에서 가져옴
             .into(holder.Image);
         //holder.rate.text = items.get(position).rate
         //holder.keyword.text = items.get(position).keyword
         //holder.hashtag.text = items.get(position).hashtag
+
+        vh.bind(item)
     }
 
     //viewHolder 단위 객체로 view 의 데이터를 설정
@@ -41,12 +46,17 @@ class RecentItemAdapter(var context: Context, private val items: ArrayList<Recen
         //var rate: TextView
         //var keyword: TextView
         //var hashtag: TextView
-
+        fun bind(item: VideoItem) {
+            //title.text = item.title
+            itemView.setOnClickListener{
+                Intent(context, VideoPlayerActivity::class.java).apply{
+                    putExtra("videos", item)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run { context.startActivity(this) }
+            }
+        }
         init {
             Image = itemView.findViewById(R.id.recentVideo)
-            //rate = itemView.findViewById(R.id.rate)
-            //keyword = itemView.findViewById(R.id.keyword)
-            //hashtag = itemView.findViewById(R.id.hashtag)
         }
     }
 }

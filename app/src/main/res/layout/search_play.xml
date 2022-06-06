@@ -18,9 +18,9 @@
             />
     </androidx.appcompat.widget.Toolbar>
 
-    <VideoView
-        android:id="@+id/searchVideo"
-        android:layout_width="360dp"
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/videoPlayerView"
+        android:layout_width="match_parent"
         android:layout_height="190dp" />
 
 
@@ -29,22 +29,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="285dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:text="제가 유튜브에서 교환을 안하는 이유...사기교환 당한것 같아요...ㅠㅠ 안녕하세요 반갑습"
-                android:textColor="#FFFFFF"
-                android:textSize="17dp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/videoTitleTextView"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="제가 유튜브에서 교환을 안하는 이유...사기교환 당한것 같아요...ㅠㅠ 안녕하세요 반갑습"
+            android:textColor="#FFFFFF"
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="13dp"
-                android:src="@drawable/bookmark_empty" />
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="22dp"
+            android:src="@drawable/bookmark_empty" />
 
 
     </LinearLayout>
@@ -200,6 +201,7 @@
             android:textColor="#FFFFFF"
             android:textSize="17dp" />
         <ImageView
+            android:id="@+id/wordCloud"
             android:layout_width="320dp"
             android:layout_height="150dp"
             android:layout_marginLeft="20dp"
