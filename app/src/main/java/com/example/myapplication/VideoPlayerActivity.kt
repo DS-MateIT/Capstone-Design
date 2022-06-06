@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.ui.PlayerView
@@ -39,11 +40,14 @@ class VideoPlayerActivity() : AppCompatActivity() {
 
         // 비디오 가져오기
         videoPlayerView = findViewById(R.id.videoPlayerView)
-        val mediaSource = mediaFactory.createMediaSource(Uri.parse(videos.sources))
+        val mediaItem = MediaItem.fromUri(videos.sources!!)
+        val mediaSource = mediaFactory.createMediaSource(mediaItem)
+        //val mediaSource = mediaFactory.createMediaSource(Uri.parse(videos.sources))
         //위에서 만든 비디오 데이터 소스를 플레이어에게 로딩하도록....
         player = SimpleExoPlayer.Builder(applicationContext).build()
         player.playWhenReady = true   // 준비가 되면 바로 재생
-        player.prepare(mediaSource)
+        player.setMediaSource(mediaSource)
+        player.prepare()
 
         videoPlayerView.player = player
 
