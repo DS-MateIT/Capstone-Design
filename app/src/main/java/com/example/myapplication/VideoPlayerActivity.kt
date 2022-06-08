@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,13 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 // 비디오 플레이어 - 목록에서 영상 클릭시 보여지는 화면
 class VideoPlayerActivity() : AppCompatActivity() {
@@ -59,11 +67,46 @@ class VideoPlayerActivity() : AppCompatActivity() {
                 Glide.with(this).load(it).override(320,150).into(wordCloud)
             }
         }
-
+        getresult()
     }
     override fun onStop() {
         videoPlayerView.player = null
         player.release()   // 릴리스해주지 않으면 부하가 와서 영상을 많이 재생할 수 없음
         super.onStop()
     }
+
+    private fun getresult() {
+        val gson : Gson = GsonBuilder()
+            .setLenient()
+            .create()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://10.0.2.2:5000")  // 127.0.0.1:5000 이걸로는 안드로이드가 허용을 안해줌
+            .addConverterFactory(GsonConverterFactory.create(gson)).build()
+
+        retrofit.create(RetrofitService::class.java).also {
+            it.getresult()
+                .enqueue(object : Callback<ResponseDTO> {
+                    override fun onResponse(
+                        call: Call<ResponseDTO>,
+                        response: Response<ResponseDTO>
+                    ) {
+                        if(response.isSuccessful.not()) {
+                            Log.d("MainActivity", "response fail")
+                            return
+                        }
+
+                        val rate = findViewById<TextView>(R.id.rate3)
+                        val result = response.body()?.result
+                        rate.text = "일치율: " + result.toString() + "%"
+
+                    }
+
+                    override fun onFailure(call: Call<ResponseDTO>, t: Throwable) {
+                        Log.d("retrofit", "에러입니다. => ${t.message.toString()}")
+                    }
+                })
+        }
+    }
+
 }
