@@ -1,7 +1,6 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,13 +19,9 @@ class HomeFragment: Fragment() {
     val binding by lazy { FragmentHomeBinding.inflate(layoutInflater)}
     private lateinit var rv_recent : RecyclerView  // 최근 시청한 영상
     private lateinit var rv_favor : RecyclerView   // 선호 카테고리 영상
-    var videoItems = ArrayList<VideoItem>()
     var list_recent = ArrayList<VideoItem>()
     //var adapter: VideoAdapter? = null
     var adapter: RecentItemAdapter? = null
-    var db = Firebase.database
-    var storageRef = Firebase.storage.reference
-    var videos: DatabaseReference? = null
 
     //private lateinit var RecentItemAdapter : Adapter
     //private lateinit var favoriteItemAdapter: Adapter
@@ -39,25 +34,6 @@ class HomeFragment: Fragment() {
 
         val toolbar : Toolbar = view.findViewById(R.id.toolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
-
-        // storage로부터 데이터를 가져와 db에 저장
-        /*videos = db.getReference("videos")
-        for(num in 0..14){
-            var fileName = "thumb_${num}.jpg"
-
-            // storage에서 이미지 불러옴
-            var imagesRef = storageRef.child("images/${fileName}").downloadUrl.addOnSuccessListener {
-                videos!!.child("$num").child("thumb").setValue(it.toString())
-            }
-
-            // 영상 불러옴
-            fileName = "video_${num}.mp4"
-            var videosRef = storageRef.child("sources/${fileName}").downloadUrl.addOnSuccessListener {
-                videos!!.child("$num").child("sources").setValue(it.toString())
-            }
-
-            //Log.w("ITEMS: ", imagesRef!!.name)
-        }*/
 
         //최근 동영상 어댑터 1
         rv_recent= view.findViewById(R.id.item_recent)
@@ -126,5 +102,6 @@ class HomeFragment: Fragment() {
         //return true
 
     }
+
 }
 

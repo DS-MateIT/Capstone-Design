@@ -33,6 +33,7 @@ class RecentItemAdapter(var context: Context, private val items: ArrayList<Video
         Glide.with(holder.itemView)
             .load(items.get(position).thumb)   // db의 thumb에서 가져옴
             .into(holder.Image);
+        holder.title.text = items.get(position).title
         //holder.rate.text = items.get(position).rate
         //holder.keyword.text = items.get(position).keyword
         //holder.hashtag.text = items.get(position).hashtag
@@ -43,6 +44,7 @@ class RecentItemAdapter(var context: Context, private val items: ArrayList<Video
     //viewHolder 단위 객체로 view 의 데이터를 설정
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var Image: ImageView
+        var title: TextView
         //var rate: TextView
         //var keyword: TextView
         //var hashtag: TextView
@@ -57,6 +59,7 @@ class RecentItemAdapter(var context: Context, private val items: ArrayList<Video
         }
         init {
             Image = itemView.findViewById(R.id.recentVideo)
+            title = itemView.findViewById(R.id.videoTitle)
         }
     }
 }

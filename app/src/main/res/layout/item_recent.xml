@@ -18,10 +18,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
+                android:id="@+id/videoTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="검색어 일치율"
+                android:maxLines="1"
+                android:ems="8"
+                android:ellipsize="end"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp"
                 android:textStyle="bold" />
