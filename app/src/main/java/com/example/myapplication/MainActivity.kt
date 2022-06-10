@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
-
 class MainActivity : AppCompatActivity() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -33,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
     }
 
     override fun onStart() {

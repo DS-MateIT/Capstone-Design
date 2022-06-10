@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
@@ -12,8 +13,6 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-
 
 class HomeFragment: Fragment() {
     val binding by lazy { FragmentHomeBinding.inflate(layoutInflater)}
@@ -22,6 +21,7 @@ class HomeFragment: Fragment() {
     var list_recent = ArrayList<VideoItem>()
     //var adapter: VideoAdapter? = null
     var adapter: RecentItemAdapter? = null
+    val menu: Menu?= null
 
     //private lateinit var RecentItemAdapter : Adapter
     //private lateinit var favoriteItemAdapter: Adapter
@@ -88,8 +88,12 @@ class HomeFragment: Fragment() {
         val searchView = menu.findItem(R.id.menu_search).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String): Boolean {
-                val text = view?.findViewById(R.id.text) as TextView
-                text.text = "$p0"
+                //val text = view?.findViewById(R.id.text) as TextView
+                //text.text = "$p0"
+                //searchView.setOnSearchClickListener {
+                    val intent = Intent(context, SearchViewActivity::class.java)
+                    startActivity(intent)
+                //}
                 return true
             }
 
@@ -99,9 +103,8 @@ class HomeFragment: Fragment() {
                 return true
             }
         })
+
         //return true
-
     }
-
 }
 

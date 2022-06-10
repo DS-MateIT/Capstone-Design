@@ -29,6 +29,7 @@
         <activity android:name=".SubActivityPassword"></activity>
         <activity android:name=".SubActivityTrigger_add"></activity>
         <activity android:name=".VideoPlayerActivity"></activity>
+        <activity android:name=".SearchViewActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
