@@ -29,12 +29,12 @@ class BookmarkFragment: Fragment() {
         adapter = BookmarkItemAdapter()
         recyclerview.adapter =  adapter
 
-        adapter.items.add(BookmarkItemData("제목1"))
-        adapter.items.add(BookmarkItemData("제목2"))
-        adapter.items.add(BookmarkItemData("제목3"))
-        adapter.items.add(BookmarkItemData("제목4"))
-        adapter.items.add(BookmarkItemData("제목5"))
-        adapter.items.add(BookmarkItemData("제목6"))
-        adapter.items.add(BookmarkItemData("제목7"))
+        adapter.items.add(BookmarkItemData("제목1",""))
+        adapter.items.add(BookmarkItemData("제목2",""))
+        adapter.items.add(BookmarkItemData("제목3",""))
+        adapter.items.add(BookmarkItemData("제목4",""))
+        adapter.items.add(BookmarkItemData("제목5",""))
+        adapter.items.add(BookmarkItemData("제목6",""))
+        adapter.items.add(BookmarkItemData("제목7",""))
     }
 }

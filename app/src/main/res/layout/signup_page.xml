@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/logo2" />
 
     <EditText
-        android:id="@+id/sign_in_id"
+        android:id="@+id/signUpId"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
@@ -27,7 +27,7 @@
         android:textColorHint="#979797" />
 
     <EditText
-        android:id="@+id/sign_in_password"
+        android:id="@+id/signUpPassword"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
@@ -38,7 +38,7 @@
         android:textColorHint="#979797" />
 
     <EditText
-        android:id="@+id/sign_in_birth"
+        android:id="@+id/signUpBirth"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
@@ -49,7 +49,7 @@
         android:textColorHint="#979797" />
 
     <Button
-        android:id="@+id/sign_in_button"
+        android:id="@+id/signUpButton"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"

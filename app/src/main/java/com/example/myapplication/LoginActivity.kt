@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.databinding.LoginPageBinding
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -49,6 +50,8 @@ class LoginActivity: AppCompatActivity() {
 
         val signupButton = findViewById<Button>(R.id.signup_button)
         signupButton.setOnClickListener {
+            startActivity(Intent(this, Signup::class.java))
+            /*
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
@@ -60,6 +63,8 @@ class LoginActivity: AppCompatActivity() {
                         Toast.makeText(this, "회원가입 실패.", Toast.LENGTH_SHORT).show()
                     }
                 }
+
+             */
         }
 
         val googleSignupbtn = findViewById<SignInButton>(R.id.google_signin_btn)

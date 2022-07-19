@@ -13,14 +13,20 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.databinding.SearchFilterBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
+/*
 class SearchViewActivity : AppCompatActivity(),
     SearchView.OnQueryTextListener{
     private lateinit var searchItem : RecyclerView  // 최근 시청한 영상
@@ -126,5 +132,44 @@ class SearchViewActivity : AppCompatActivity(),
             Toast.makeText(this, "검색어는 12자까지만 입력 가능합니다.", Toast.LENGTH_SHORT).show()
 
         return true
+    }
+}
+
+*/
+
+class SearchViewActivity : AppCompatActivity() {
+    lateinit var binding: SearchFilterBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //setContentView(R.layout.activity_main)
+
+        binding = com.example.myapplication.databinding.SearchFilterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.searchButton.setOnClickListener {
+            var call: Call<SearchListResponse> = MyApplication.networkService.getList(
+                "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk",
+                binding.input1.text.toString(),
+                "video",
+                "snippet")
+
+            call?.enqueue(object : Callback<SearchListResponse> {
+                override fun onResponse(
+                    call: Call<SearchListResponse>,
+                    response: Response<SearchListResponse>
+                ) {
+                    if(response.isSuccessful){
+                        binding.recyclerview.layoutManager = LinearLayoutManager(this@SearchViewActivity)
+                        binding.recyclerview.adapter = MyAdapter(this@SearchViewActivity, response.body()?.items)
+                    }
+                }
+
+                override fun onFailure(call: Call<SearchListResponse>, t: Throwable) {
+                    Log.d("mobileApp", "error..")
+                }
+            })
+
+
+        }
     }
 }

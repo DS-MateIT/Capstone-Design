@@ -13,15 +13,17 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.toolbar_search.*
 
 class HomeFragment: Fragment() {
-    val binding by lazy { FragmentHomeBinding.inflate(layoutInflater)}
-    private lateinit var rv_recent : RecyclerView  // 최근 시청한 영상
-    private lateinit var rv_favor : RecyclerView   // 선호 카테고리 영상
-    var list_recent = ArrayList<VideoItem>()
+    val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+    private lateinit var rv_recent: RecyclerView  // 최근 시청한 영상
+    private lateinit var rv_favor: RecyclerView   // 선호 카테고리 영상
+
+    //var list_recent = ArrayList<VideoItem>()
     //var adapter: VideoAdapter? = null
-    var adapter: RecentItemAdapter? = null
-    val menu: Menu?= null
+    //var adapter: RecentItemAdapter? = null
+    val menu: Menu? = null
 
     //private lateinit var RecentItemAdapter : Adapter
     //private lateinit var favoriteItemAdapter: Adapter
@@ -30,13 +32,13 @@ class HomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_home,container,false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val toolbar : Toolbar = view.findViewById(R.id.toolbar)
+        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
 
         //최근 동영상 어댑터 1
-        rv_recent= view.findViewById(R.id.item_recent)
+        rv_recent = view.findViewById(R.id.item_recent)
 
         //val list_recent = ArrayList<recentItemData>() //임시 데이터
 /*
@@ -58,6 +60,7 @@ class HomeFragment: Fragment() {
         setHasOptionsMenu(true)
         return view
 
+
     }
 
     private fun loadrecyclerViewData() {
@@ -65,8 +68,9 @@ class HomeFragment: Fragment() {
         val reference = Firebase.database.getReference("videos")
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                list_recent.clear()
+                //list_recent.clear()
                 // db 데이터를 가져와서 그 중 썸네일 이미지를 recyclerview에 표시
+                /*
                 for (dataSnapshot1 in dataSnapshot.children) {
                     val item: VideoItem? = dataSnapshot1.getValue(VideoItem::class.java)
                     if (item != null) {
@@ -77,15 +81,27 @@ class HomeFragment: Fragment() {
 
                     rv_favor.adapter = adapter
                 }
+                */
+
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}
         })
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
-        val searchView = menu.findItem(R.id.menu_search).actionView as SearchView
+        //val searchView = menu.findItem(R.id.menu_search).actionView as SearchView
+        //검색 버튼 클릭
+        val searchView = menu.findItem(R.id.menu_search)
+        searchView.setOnMenuItemClickListener {
+            val intent = Intent(context, SearchViewActivity::class.java)
+            startActivity(intent)
+            return@setOnMenuItemClickListener true
+        }
+
+        /*
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String): Boolean {
                 //val text = view?.findViewById(R.id.text) as TextView
@@ -106,5 +122,9 @@ class HomeFragment: Fragment() {
 
         //return true
     }
-}
 
+
+         */
+    }
+
+}

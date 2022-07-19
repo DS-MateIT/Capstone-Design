@@ -1,22 +1,22 @@
 package com.example.myapplication
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.myapplication.databinding.ItemSearchBinding
+import com.example.myapplication.databinding.VideoPlayerBinding
+import com.google.android.youtube.player.YouTubePlayer
+import com.google.android.youtube.player.YouTubePlayerView
+import com.google.android.youtube.player.YouTubeStandalonePlayer
+import com.google.android.youtube.player.YouTubeStandalonePlayer.createVideoIntent
 
+/*
 class VideoAdapter(var context: Context, var videoItems: ArrayList<VideoItem>) :
     RecyclerView.Adapter<VideoAdapter.VH>() {
     lateinit var listener: AdapterView.OnItemClickListener
@@ -58,6 +58,7 @@ class VideoAdapter(var context: Context, var videoItems: ArrayList<VideoItem>) :
         var pv: PlayerView
         var player: SimpleExoPlayer
 
+
         fun bind(item: VideoItem) {
             //title.text = item.title
             itemView.setOnClickListener{
@@ -81,5 +82,63 @@ class VideoAdapter(var context: Context, var videoItems: ArrayList<VideoItem>) :
     init {
         factory = DefaultDataSourceFactory(context, "Ex90ExoPlayer") // 매개 두번째는 임의로 그냥 적음
         mediaFactory = ProgressiveMediaSource.Factory(factory)
+    }
+}
+
+ */
+
+class MyViewHolder(val binding: ItemSearchBinding): RecyclerView.ViewHolder(binding.root)
+class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    override fun getItemCount(): Int{
+        return datas?.size ?: 0
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
+            = MyViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val binding=(holder as MyViewHolder).binding
+        val model = datas!![position].snippet!!
+
+        //binding.dateTextView.text = model.publishedAt
+        binding.searchVideoTitle.text = model.title
+        //binding.contentsTextView.text = model.description
+
+        if(model.thumbnails != null && model.thumbnails.medium != null){
+            Glide.with(binding.root)
+                .load(model.thumbnails.medium.url)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .dontAnimate()
+                .into(binding.searchVideoThumbnails)
+        }
+
+
+
+
+        //방법1: VideoPlayerActivity로 이동하여 재생
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, VideoPlayerActivity::class.java)
+            intent.putExtra("title", datas!![position].snippet!!.title.toString())
+            intent.putExtra("id", datas!![position].id!!.videoId.toString())
+
+        /*
+        //방법2: 스탠드얼론플레이어로 재생하는 방법 - test
+        holder.itemView.setOnClickListener{
+            val intent = YouTubeStandalonePlayer.createVideoIntent(
+                context as Activity,
+                "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk", //유튜브 api 키
+                datas!![position].id!!.videoId.toString(), //비디오 id
+                0, //몇초후 재생
+                true, //자동실행 할지 말지
+                true //작은 뷰박스에서 재생할지 말지 false하면 풀화면으로 재생
+            )
+
+         */
+            context.startActivity(intent)
+        }
+
     }
 }

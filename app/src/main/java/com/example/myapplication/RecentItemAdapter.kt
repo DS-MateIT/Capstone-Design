@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
+/*
 class RecentItemAdapter(var context: Context, private val items: ArrayList<VideoItem> ) :
     RecyclerView.Adapter<RecentItemAdapter.VH>() {
     override fun onCreateViewHolder(
@@ -63,3 +64,5 @@ class RecentItemAdapter(var context: Context, private val items: ArrayList<Video
         }
     }
 }
+
+ */

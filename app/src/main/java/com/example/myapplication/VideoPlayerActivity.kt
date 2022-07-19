@@ -3,30 +3,67 @@ package com.example.myapplication
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.databinding.SearchFilterBinding
+import com.example.myapplication.databinding.SearchPlayBinding
+import com.example.myapplication.databinding.VideoPlayerBinding
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.youtube.player.YouTubeBaseActivity
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
+import com.google.android.youtube.player.YouTubePlayerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.item_play.*
+import kotlinx.android.synthetic.main.search_play.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
+
 
 // 비디오 플레이어 - 목록에서 영상 클릭시 보여지는 화면
-class VideoPlayerActivity() : AppCompatActivity() {
-    lateinit var videoPlayerView: PlayerView
+class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
+    lateinit var binding: SearchPlayBinding
+
+    override fun onInitializationSuccess(
+        p0: YouTubePlayer.Provider?,
+        p1: YouTubePlayer?,
+        p2: Boolean
+    ) {
+        if (!p2) {
+            val playKey = intent.getStringExtra("playKey")
+            p1!!.cueVideo(playKey);
+        }
+    }
+
+    override fun onInitializationFailure(
+        p0: YouTubePlayer.Provider?,
+        p1: YouTubeInitializationResult?
+    ) {
+        Log.d("player","실패")
+    }
+/*
     lateinit var videos: VideoItem
     lateinit var player: SimpleExoPlayer
     lateinit var factory: DataSource.Factory
@@ -35,17 +72,39 @@ class VideoPlayerActivity() : AppCompatActivity() {
     var db = Firebase.database
     var storageRef = Firebase.storage.reference
 
+*/
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.search_play)
+        //setContentView(R.layout.search_play)
+
+        binding = SearchPlayBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        videoPlayerView.initialize(getString(R.string.youtube_key), this@VideoPlayerActivity)!!
+
+        val title = intent.getStringExtra("title").toString()
+        videoTitleTextView.setText(title);
+
+
+        /*
         factory = DefaultDataSourceFactory(applicationContext, "Ex90ExoPlayer") // 매개 두번째는 임의로 그냥 적음
         mediaFactory= ProgressiveMediaSource.Factory(factory)
         // recyclerview에서 아이템 클릭시 전송된 데이터를 가져옴
-        videos = intent.getSerializableExtra("videos") as VideoItem
+
+         */
+        /*
+        var videos = intent.getSerializableExtra("videos") as SearchResultSnippet
+
+
         var videoTitle = findViewById<TextView>(R.id.videoTitleTextView)
         videoTitle.text = videos.title
+        */
 
+        /*
         // 비디오 가져오기
         videoPlayerView = findViewById(R.id.videoPlayerView)
         val mediaItem = MediaItem.fromUri(videos.sources!!)
@@ -59,6 +118,9 @@ class VideoPlayerActivity() : AppCompatActivity() {
 
         videoPlayerView.player = player
 
+
+
+
         // 워드클라우드
         var wordCloud = findViewById<ImageView>(R.id.wordCloud)
         //var url = db.getReference("videos").child("7").child("wordcloud")
@@ -68,12 +130,16 @@ class VideoPlayerActivity() : AppCompatActivity() {
             }
         }
         getresult()
+
+
     }
     override fun onStop() {
         videoPlayerView.player = null
         player.release()   // 릴리스해주지 않으면 부하가 와서 영상을 많이 재생할 수 없음
         super.onStop()
     }
+
+
 
     private fun getresult() {
         val gson : Gson = GsonBuilder()
@@ -107,6 +173,16 @@ class VideoPlayerActivity() : AppCompatActivity() {
                     }
                 })
         }
+*/
     }
 
+
 }
+
+
+
+
+
+
+
+

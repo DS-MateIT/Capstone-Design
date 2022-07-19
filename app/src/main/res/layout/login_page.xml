@@ -49,30 +49,17 @@
         android:textSize="16dp" />
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="147dp"
-        android:layout_height="14dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="77dp"
-        android:layout_marginTop="424dp"
-        android:text="혹시 노그로가 처음이신가요?"
-        android:textColor="#979797"
-        android:textSize="12dp" />
-
     <Button
         android:id="@+id/signup_button"
-        android:layout_width="80dp"
-        android:layout_height="18dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="424dp"
-        android:layout_toRightOf="@id/textView"
-        android:background="@drawable/login_btn"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/border_round"
         android:text="회원가입"
         android:textColor="#FFFFFF"
-        android:textSize="12dp" />
+        android:textSize="16dp" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_signin_btn"

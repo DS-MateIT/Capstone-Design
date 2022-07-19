@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
+/*
 class SearchItemAdapter (var context: Context, private val items: ArrayList<VideoItem> ) :
     RecyclerView.Adapter<SearchItemAdapter.VH>() {
     override fun onCreateViewHolder(
@@ -62,3 +63,5 @@ class SearchItemAdapter (var context: Context, private val items: ArrayList<Vide
         }
     }
 }
+
+*/
