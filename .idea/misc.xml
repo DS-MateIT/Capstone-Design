@@ -23,7 +23,8 @@
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/drawable/login_btn_style.xml" value="0.2175" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/bookmark_main.xml" value="0.1" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/fragment_home.xml" value="0.1273798730734361" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/dialog.xml" value="0.1" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/item_bookmark.xml" value="0.16802536231884058" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/item_favorite.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/item_play.xml" value="0.14855072463768115" />
@@ -32,6 +33,7 @@
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/login_page.xml" value="0.264" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/main_item_favorite.xml" value="0.20820863616930313" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/main_item_recent.xml" value="0.264" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/preference_main.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/search_filter.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/search_play.xml" value="0.264" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/searching.xml" value="0.23867753623188406" />
