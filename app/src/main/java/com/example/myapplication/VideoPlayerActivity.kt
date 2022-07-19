@@ -52,7 +52,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         p2: Boolean
     ) {
         if (!p2) {
-            val playKey = intent.getStringExtra("playKey")
+            val playKey = intent.getStringExtra("id")
             p1!!.cueVideo(playKey);
         }
     }
