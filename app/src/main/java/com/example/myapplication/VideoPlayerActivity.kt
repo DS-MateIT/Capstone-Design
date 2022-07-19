@@ -129,6 +129,12 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                 Glide.with(this).load(it).override(320,150).into(wordCloud)
             }
         }
+
+        if(videoTitle.text == "본격 공개! 설현의 뷰티 노하우 ‘심쿵 꿀팁’ @본격연예 한밤 13회 20170228"){
+            var imageRef = storageRef.child("images/word_cloud_SEOLHYUN2_HANBAM.png").downloadUrl.addOnSuccessListener{
+                Glide.with(this).load(it).override(320,150).into(wordCloud)
+            }
+        }
         getresult()
 
 
