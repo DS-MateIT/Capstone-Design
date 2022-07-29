@@ -4,75 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/main_theme">
+    android:background="@color/main_theme"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        app:menu="@menu/toolbar_menu">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_small"
-            />
+            android:src="@drawable/logo_small" />
     </androidx.appcompat.widget.Toolbar>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:background="@color/main_theme"
-            android:src="@drawable/arrow_left" />
+        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/input1"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:padding="8dp"
-            android:background="@drawable/border_grround"
-            android:hint="검색할 키워드를 입력해주세요."
-            android:textColor="#FFFFFF"
-            android:textSize="14dp" />
-
-        <ImageButton
-            android:id="@+id/search_button"
-            android:background="@color/main_theme"
-            android:scaleType="centerCrop"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="12dp"
-            android:src="@drawable/search" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="23dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/border_grayrect"
-            android:text="필터링 게시글"
+            android:layout_marginBottom="15dp"
+            android:spinnerMode="dropdown"
             android:textColor="#FFFFFF"
-            android:textSize="14dp" />
+            android:textSize="16dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="29dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/arrow_down" />
 
     </LinearLayout>
 
@@ -80,10 +43,9 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_search"
-        android:orientation="vertical">
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/item_search"></androidx.recyclerview.widget.RecyclerView>
 
 
 </LinearLayout>

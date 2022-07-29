@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filtering">
+        <item>필터링 게시물</item>
+        <item>어그로 게시물</item>
+    </string-array>
+</resources>

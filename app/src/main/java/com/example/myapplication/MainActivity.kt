@@ -3,16 +3,22 @@ package com.example.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val toolbar : Toolbar = findViewById(R.id.toolbar);
 
         val homeFragment = HomeFragment()
         val preferenceFragment = PreferenceFragment()
@@ -33,6 +39,36 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        setSupportActionBar(toolbar);
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        val searchView = menu?.findItem(R.id.menu_search)?.actionView as SearchView
+        //검색 버튼 클릭
+        //val searchView = menu.findItem(R.id.menu_search)
+
+        /*searchView.setOnMenuItemClickListener {
+            val intent = Intent(context, SearchViewActivity::class.java)
+            startActivity(intent)
+            return@setOnMenuItemClickListener true
+       */
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                val intent = Intent(this@MainActivity, SearchViewActivity::class.java)
+                intent.putExtra("query", "$query");
+                startActivity(intent)
+                return true
+
+            }
+            override fun onQueryTextChange(p0: String): Boolean {
+                return true
+            }
+        })
+
+
+        return true
     }
 
     override fun onStart() {
@@ -49,5 +85,6 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.fragmentContainer, fragment)
                 commit()
             }
+
     }
 }

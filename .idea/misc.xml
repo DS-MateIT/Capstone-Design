@@ -21,7 +21,7 @@
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/DSNoggro/app/src/main/res/menu/bottom_navigation.xml" value="0.14921223354958293" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/drawable/border_round.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/drawable/login_btn_style.xml" value="0.2175" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/bookmark_main.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/dialog.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/fragment_home.xml" value="0.264" />
@@ -33,10 +33,11 @@
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/login_page.xml" value="0.264" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/main_item_favorite.xml" value="0.20820863616930313" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/main_item_recent.xml" value="0.264" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/preference_main.xml" value="0.23802083333333332" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/search_filter.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/preference_main.xml" value="0.11673151750972763" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/search_filter.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/search_play.xml" value="0.264" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/searching.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/setting_main.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/setting_password_change.xml" value="0.1578125" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/setting_trigger_main.xml" value="0.2033514492753623" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/sign_in_page.xml" value="0.176" />
@@ -44,6 +45,7 @@
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/toolbar_search.xml" value="0.1125" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/layout/video_player.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/menu/toolbar_menu.xml" value="0.1" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro/app/src/main/res/menu/toolbar_menu_open.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro2/app/src/main/res/drawable/border_round.xml" value="0.171" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Noggro2/app/src/main/res/drawable/hashtag.xml" value="0.171" />
