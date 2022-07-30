@@ -3,18 +3,29 @@ package com.example.myapplication
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.view.drawToBitmap
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myapplication.databinding.ItemSearchBinding
 import com.example.myapplication.databinding.VideoPlayerBinding
+import com.google.android.gms.tasks.Task
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
 import com.google.android.youtube.player.YouTubeStandalonePlayer
 import com.google.android.youtube.player.YouTubeStandalonePlayer.createVideoIntent
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.Text
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
 
 /*
 class VideoAdapter(var context: Context, var videoItems: ArrayList<VideoItem>) :
@@ -90,6 +101,7 @@ class VideoAdapter(var context: Context, var videoItems: ArrayList<VideoItem>) :
 class MyViewHolder(val binding: ItemSearchBinding): RecyclerView.ViewHolder(binding.root)
 class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+
     override fun getItemCount(): Int{
         return datas?.size ?: 0
     }
@@ -116,7 +128,22 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
         }
 
 
+        val drawable = context.getResources().getDrawable(R.drawable.logo2)
+        //val drawable = model.thumbnails.default
 
+        val bitmapDrawable = drawable as BitmapDrawable
+        val bitmap = bitmapDrawable.bitmap
+        val image = InputImage.fromBitmap(bitmap,0)
+
+
+        val recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
+        val result : Task<Text> = recognizer.process(image)
+            .addOnSuccessListener { visionText ->
+                binding.views.text = visionText.text
+
+            }
+            .addOnFailureListener { e ->
+            }
 
         //방법1: VideoPlayerActivity로 이동하여 재생
         holder.itemView.setOnClickListener {
@@ -141,4 +168,5 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
         }
 
     }
+
 }

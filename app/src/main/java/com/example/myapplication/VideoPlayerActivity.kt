@@ -89,6 +89,8 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         val title = intent.getStringExtra("title").toString()
         videoTitleTextView.setText(title);
 
+        //sendReq()
+        getresult()
 
         /*
         factory = DefaultDataSourceFactory(applicationContext, "Ex90ExoPlayer") // 매개 두번째는 임의로 그냥 적음
@@ -145,10 +147,11 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         super.onStop()
     }
 
-
+*/
+    }
 
     private fun getresult() {
-        val gson : Gson = GsonBuilder()
+        val gson: Gson = GsonBuilder()
             .setLenient()
             .create()
 
@@ -163,7 +166,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                         call: Call<ResponseDTO>,
                         response: Response<ResponseDTO>
                     ) {
-                        if(response.isSuccessful.not()) {
+                        if (response.isSuccessful.not()) {
                             Log.d("MainActivity", "response fail")
                             return
                         }
@@ -179,10 +182,38 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                     }
                 })
         }
-*/
-
-
     }
+    /*
+    * private fun sendReq() {
+        var input = HashMap<String, String>()
+        input["title"] = "TEST입니다"
+        RetrofitBuilder.api.post(input).enqueue(object: Callback<PostDTO> {
+            override fun onResponse(call: Call<PostDTO>, response: Response<PostDTO>) {
+                if(response.isSuccessful) {
+                    Log.d("test", "연결성공")
+                    var a: PostDTO = response.body()!!
+                }
+            }
+
+            override fun onFailure(call: Call<PostDTO>, t: Throwable) {
+                Log.d("test", "연결실패")
+            }
+
+        })
+    }
+
+    object RetrofitBuilder {
+        var api: RetrofitPost
+
+        init {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:5000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            api = retrofit.create(RetrofitPost::class.java)
+        }
+    }*/
 
 
 }
