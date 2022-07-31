@@ -1,31 +1,25 @@
 package com.example.myapplication
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getDrawable
-import androidx.core.view.drawToBitmap
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.target.BitmapImageViewTarget
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.myapplication.databinding.ItemSearchBinding
-import com.example.myapplication.databinding.VideoPlayerBinding
 import com.google.android.gms.tasks.Task
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerView
-import com.google.android.youtube.player.YouTubeStandalonePlayer
-import com.google.android.youtube.player.YouTubeStandalonePlayer.createVideoIntent
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
+
 
 /*
 class VideoAdapter(var context: Context, var videoItems: ArrayList<VideoItem>) :
@@ -102,22 +96,22 @@ class MyViewHolder(val binding: ItemSearchBinding): RecyclerView.ViewHolder(bind
 class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
-    override fun getItemCount(): Int{
+    override fun getItemCount(): Int {
         return datas?.size ?: 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
-            = MyViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        MyViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val binding=(holder as MyViewHolder).binding
+        val binding = (holder as MyViewHolder).binding
         val model = datas!![position].snippet!!
 
         //binding.dateTextView.text = model.publishedAt
         binding.searchVideoTitle.text = model.title
         //binding.contentsTextView.text = model.description
 
-        if(model.thumbnails != null && model.thumbnails.medium != null){
+        if (model.thumbnails != null && model.thumbnails.medium != null) {
             Glide.with(binding.root)
                 .load(model.thumbnails.medium.url)
                 .centerCrop()
@@ -128,6 +122,8 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
         }
 
 
+        /*
+        //mlkit 로고로 테스트
         val drawable = context.getResources().getDrawable(R.drawable.logo2)
         //val drawable = model.thumbnails.default
 
@@ -140,10 +136,52 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
         val result : Task<Text> = recognizer.process(image)
             .addOnSuccessListener { visionText ->
                 binding.views.text = visionText.text
+                Log.d("mlkit",visionText.text)
 
             }
             .addOnFailureListener { e ->
             }
+
+        */
+        
+        //추가한코드 - mlkit 썸네일 문구 조회수에 나오는거 확인
+            val mlkittext = Glide.with(binding.root)
+                .asBitmap()
+                .load(model.thumbnails.medium?.url)
+                .into(object : CustomTarget<Bitmap>() {
+                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                        Log.d("mlkit","resource onResource Ready")//resource 받은거 확인
+
+                        val image = InputImage.fromBitmap(resource,0)
+
+                        val recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
+                        val result : Task<Text> = recognizer.process(image)
+                            .addOnSuccessListener { visionText ->
+                                binding.views.text = visionText.text
+                                Log.d("mlkit",visionText.text)
+
+                            }
+                            .addOnFailureListener { e ->
+                            }
+
+
+                    }
+
+                    override fun onLoadCleared(placeholder: Drawable?) {
+                        Log.d("mlkit","onLoadCleared")
+                        // this is called when imageView is cleared on lifecycle call or for
+                        // some other reason.
+                        // if you are referencing the bitmap somewhere else too other than this imageView
+                        // clear it here as you can no longer have the bitmap
+                    }
+                })
+
+
+
+
+
+
+
 
         //방법1: VideoPlayerActivity로 이동하여 재생
         holder.itemView.setOnClickListener {
@@ -170,3 +208,6 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
     }
 
 }
+
+
+
