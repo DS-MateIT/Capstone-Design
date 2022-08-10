@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.myapplication.databinding.ItemSearchBinding
@@ -19,6 +18,10 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.IOException
 
 
 /*
@@ -143,7 +146,8 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
             }
 
         */
-        
+
+
         //추가한코드 - mlkit 썸네일 문구 조회수에 나오는거 확인
             val mlkittext = Glide.with(binding.root)
                 .asBitmap()
@@ -157,8 +161,40 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
                         val recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
                         val result : Task<Text> = recognizer.process(image)
                             .addOnSuccessListener { visionText ->
-                                binding.views.text = visionText.text
+                                val mlkit_Text : String = visionText.text
+                                binding.views.text = mlkit_Text
                                 Log.d("mlkit",visionText.text)
+
+                                //레트로핏 전송
+                                val mlkit_data = visionText.text
+
+                                RetrofitClient.retrofitService.postData(mlkit_data).enqueue(object : Callback<mlkitDTO> {
+                                    override fun onResponse(
+                                        call: Call<mlkitDTO>,
+                                        response: Response<mlkitDTO>
+                                    ) {
+                                        if (response.isSuccessful) {
+                                            try {
+                                                val result = response.body().toString()
+                                                Log.v("post", result)
+
+                                            } catch (e: IOException) {
+                                                e.printStackTrace()
+                                            }
+                                        } else {
+                                            Log.v("post","error = " + java.lang.String.valueOf(response.code()))
+
+                                        }
+
+
+                                    }
+
+
+                                    override fun onFailure(call: Call<mlkitDTO>, t: Throwable) {
+                                        Log.d("post","post실패"+t.toString())
+                                    }
+
+                                })
 
                             }
                             .addOnFailureListener { e ->
@@ -183,31 +219,23 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
 
 
 
+
+
+
+
         //방법1: VideoPlayerActivity로 이동하여 재생
         holder.itemView.setOnClickListener {
             val intent = Intent(context, VideoPlayerActivity::class.java)
             intent.putExtra("title", datas!![position].snippet!!.title.toString())
             intent.putExtra("id", datas!![position].id!!.videoId.toString())
 
-        /*
-        //방법2: 스탠드얼론플레이어로 재생하는 방법 - test
-        holder.itemView.setOnClickListener{
-            val intent = YouTubeStandalonePlayer.createVideoIntent(
-                context as Activity,
-                "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk", //유튜브 api 키
-                datas!![position].id!!.videoId.toString(), //비디오 id
-                0, //몇초후 재생
-                true, //자동실행 할지 말지
-                true //작은 뷰박스에서 재생할지 말지 false하면 풀화면으로 재생
-            )
-
-         */
             context.startActivity(intent)
         }
 
     }
 
 }
+
 
 
 

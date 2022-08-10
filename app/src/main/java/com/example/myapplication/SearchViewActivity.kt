@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -14,9 +15,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.SearchFilterBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import retrofit2.*
+import java.util.concurrent.Executor
 
 
 /*
@@ -132,6 +132,7 @@ class SearchViewActivity : AppCompatActivity(),
 
 class SearchViewActivity : AppCompatActivity() {
     lateinit var binding: SearchFilterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -207,6 +208,7 @@ class SearchViewActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
+
     }
 
     }
@@ -259,6 +261,14 @@ class SearchViewActivity : AppCompatActivity() {
 
 
         return true
+
+
+
     }
+
+
+
+
+
 
 }
