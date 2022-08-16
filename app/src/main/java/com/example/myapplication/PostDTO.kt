@@ -13,4 +13,7 @@ data class mlkitDTO (
     var mlkitText: String
     )
 
-
+data class srchDTO(
+    @SerializedName("srchText")
+    var srchText: String
+)

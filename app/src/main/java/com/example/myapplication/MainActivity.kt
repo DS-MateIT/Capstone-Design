@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import androidx.appcompat.widget.SearchView
@@ -10,6 +11,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.IOException
 
 open class MainActivity : AppCompatActivity() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -57,7 +62,33 @@ open class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 val intent = Intent(this@MainActivity, SearchViewActivity::class.java)
-                intent.putExtra("query", "$query");
+                intent.putExtra("query", "$query")
+
+                //query 최근 검색어 post
+                RetrofitClient.retrofitService.srchData(query).enqueue(object: Callback<srchDTO> {
+                    override fun onResponse(call: Call<srchDTO>, response: Response<srchDTO>) {
+                        if (response.isSuccessful) {
+                            try {
+                                val result = response.body().toString()
+                                Log.v("srch", result)
+
+                            } catch (e: IOException) {
+                                e.printStackTrace()
+                            }
+                        } else {
+                            Log.v("srch","error = " + java.lang.String.valueOf(response.code()))
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<srchDTO>, t: Throwable) {
+                        Log.d("srch","post실패"+t.toString())
+                    }
+
+
+                })
+
+
                 startActivity(intent)
                 return true
 

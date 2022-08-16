@@ -16,6 +16,14 @@ interface RetrofitService{
     ) : Call<mlkitDTO>
 
 
+    //srchword post
+    @FormUrlEncoded
+    @POST("srch")
+    fun srchData(
+        @Field("srchText") srchText : String
+    ) : Call<srchDTO>
+
+
 }
 
 /*

@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.SearchFilterBinding
 import retrofit2.*
+import java.io.IOException
 import java.util.concurrent.Executor
 
 
@@ -145,6 +146,7 @@ class SearchViewActivity : AppCompatActivity() {
         val intent = intent
         val query = intent.getStringExtra("query")
 
+
         //homeFragment 검색결과 가져오기
         var call: Call<SearchListResponse> = MyApplication.networkService.getList(
             "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk",
@@ -219,8 +221,30 @@ class SearchViewActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                //query 최근 검색어 DB에 저장할 코드 만들기 
-                
+                //query 최근 검색어 post
+                RetrofitClient.retrofitService.srchData(query).enqueue(object: Callback<srchDTO> {
+                    override fun onResponse(call: Call<srchDTO>, response: Response<srchDTO>) {
+                        if (response.isSuccessful) {
+                            try {
+                                val result = response.body().toString()
+                                Log.v("srch", result)
+
+                            } catch (e: IOException) {
+                                e.printStackTrace()
+                            }
+                        } else {
+                            Log.v("srch","error = " + java.lang.String.valueOf(response.code()))
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<srchDTO>, t: Throwable) {
+                        Log.d("srch","post실패"+t.toString())
+                    }
+
+
+                })
+
                 
                 var call: Call<SearchListResponse> = MyApplication.networkService.getList(
                     "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk",
@@ -246,8 +270,6 @@ class SearchViewActivity : AppCompatActivity() {
                         Log.d("mobileApp", "error..")
                     }
                 })
-
-
 
 
 
