@@ -21,8 +21,8 @@ class SettingFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 트리거 워닝 페이지로 이동
-        to_trigger.setOnClickListener{
+        // 프로필 수정 페이지로 이동
+        editprofile.setOnClickListener{
             val intent = Intent(activity, SubActivityTrigger::class.java)
             startActivity(intent)
         }

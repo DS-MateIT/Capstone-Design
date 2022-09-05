@@ -38,6 +38,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -54,6 +55,8 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         if (!p2) {
             val playKey = intent.getStringExtra("id")
             p1!!.cueVideo(playKey);
+
+
         }
     }
 
@@ -91,6 +94,32 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
 
         //sendReq()
         getresult()
+
+        //북마크 클릭시 videoId 서버 전송
+        val videoId = intent.getStringExtra("id").toString()
+        binding.btnBook.setOnClickListener({
+            RetrofitClient.retrofitService.bmvideoData(videoId).enqueue(object : Callback <videoIdDTO>{
+                override fun onResponse(call: Call<videoIdDTO>, response: Response<videoIdDTO>) {
+                    if (response.isSuccessful) {
+                        try {
+                            val result = response.body().toString()
+                            Log.v("videoid_bookmark", result)
+
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                        }
+                    } else {
+                        Log.v("videoid_bookmark","error = " + java.lang.String.valueOf(response.code()))
+
+                    }
+                }
+
+                override fun onFailure(call: Call<videoIdDTO>, t: Throwable) {
+                    Log.d("videoid_bookmark","post"+t.toString())
+                }
+
+            })
+        })
 
         /*
         factory = DefaultDataSourceFactory(applicationContext, "Ex90ExoPlayer") // 매개 두번째는 임의로 그냥 적음

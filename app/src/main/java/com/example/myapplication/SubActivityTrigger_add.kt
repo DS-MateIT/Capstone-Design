@@ -11,6 +11,7 @@ class SubActivityTrigger_add : AppCompatActivity() {
         setContentView(R.layout.setting_trigger_add)
         setContentView(R.layout.setting_main)
 
+        /*
         // 트리거 워닝 페이지로 이동
         to_trigger.setOnClickListener{
             val intent = Intent(this, SubActivityTrigger::class.java)
@@ -22,6 +23,8 @@ class SubActivityTrigger_add : AppCompatActivity() {
             val intent = Intent(this, SubActivityPassword::class.java)
             startActivity(intent)
         }
+
+         */
     }
 }
 

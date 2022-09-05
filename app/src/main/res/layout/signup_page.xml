@@ -44,7 +44,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="415dp"
         android:background="@drawable/border_round"
-        android:hint="생년월일"
+        android:hint="생년월일   ex)20220903"
         android:textColor="#979797"
         android:textColorHint="#979797" />
 

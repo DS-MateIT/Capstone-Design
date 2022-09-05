@@ -125,36 +125,16 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
         }
 
 
-        /*
-        //mlkit 로고로 테스트
-        val drawable = context.getResources().getDrawable(R.drawable.logo2)
-        //val drawable = model.thumbnails.default
 
-        val bitmapDrawable = drawable as BitmapDrawable
-        val bitmap = bitmapDrawable.bitmap
-        val image = InputImage.fromBitmap(bitmap,0)
-
-
-        val recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
-        val result : Task<Text> = recognizer.process(image)
-            .addOnSuccessListener { visionText ->
-                binding.views.text = visionText.text
-                Log.d("mlkit",visionText.text)
-
-            }
-            .addOnFailureListener { e ->
-            }
-
-        */
-
-
-        //추가한코드 - mlkit 썸네일 문구 조회수에 나오는거 확인
+        // mlkit 썸네일 문구 인식
             val mlkittext = Glide.with(binding.root)
                 .asBitmap()
                 .load(model.thumbnails.medium?.url)
                 .into(object : CustomTarget<Bitmap>() {
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        Log.d("mlkit","resource onResource Ready")//resource 받은거 확인
+
+                        //mlkit bitmap으로 변환 resource 받은거 확인
+                        Log.d("mlkit","resource onResource Ready")
 
                         val image = InputImage.fromBitmap(resource,0)
 
@@ -173,10 +153,11 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
                                         call: Call<mlkitDTO>,
                                         response: Response<mlkitDTO>
                                     ) {
+                                        //통신 성공
                                         if (response.isSuccessful) {
                                             try {
                                                 val result = response.body().toString()
-                                                Log.v("post", result)
+                                                Log.v("post", result) //mlkit 값 서버에 전송
 
                                             } catch (e: IOException) {
                                                 e.printStackTrace()
@@ -191,7 +172,7 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
 
 
                                     override fun onFailure(call: Call<mlkitDTO>, t: Throwable) {
-                                        Log.d("post","post실패"+t.toString())
+                                        Log.d("post","post"+t.toString())
                                     }
 
                                 })
@@ -216,18 +197,37 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
 
 
 
-
-
-
-
-
-
-
-        //방법1: VideoPlayerActivity로 이동하여 재생
+        //VideoPlayerActivity로 이동하여 재생
         holder.itemView.setOnClickListener {
             val intent = Intent(context, VideoPlayerActivity::class.java)
             intent.putExtra("title", datas!![position].snippet!!.title.toString())
             intent.putExtra("id", datas!![position].id!!.videoId.toString())
+
+            val videoId = datas!![position].id!!.videoId.toString()
+
+            //videoID값 전송 - 최근 시청한 영상에 쓰일것임 아마도
+            RetrofitClient.retrofitService.videoData(videoId).enqueue(object : Callback<videoIdDTO>{
+                override fun onResponse(call: Call<videoIdDTO>, response: Response<videoIdDTO>) {
+                    if (response.isSuccessful) {
+                        try {
+                            val result = response.body().toString()
+                            Log.v("videoid_watch", result)
+
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                        }
+                    } else {
+                        Log.v("videoid_watch","error = " + java.lang.String.valueOf(response.code()))
+
+                    }
+                }
+
+                override fun onFailure(call: Call<videoIdDTO>, t: Throwable) {
+                    Log.d("videoid_watch","post"+t.toString())
+                }
+
+            })
+
 
             context.startActivity(intent)
         }

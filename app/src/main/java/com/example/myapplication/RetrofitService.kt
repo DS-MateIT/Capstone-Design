@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -23,8 +24,43 @@ interface RetrofitService{
         @Field("srchText") srchText : String
     ) : Call<srchDTO>
 
+    //videoId post - 최근 시청한 영상
+    @FormUrlEncoded
+    @POST("videoid")
+    fun videoData(
+        @Field("videoId") videoId : String
+    ) : Call<videoIdDTO>
+
+    //videoId post - 북마크
+    @FormUrlEncoded
+    @POST("BMvideoid")
+    fun bmvideoData(
+        @Field("videoId") videoId : String
+    ) : Call<videoIdDTO>
+
+
+
+
+
+    //검색어 get 테스트
+    @GET("/srch")//서버에 GET 요청을 할 주소를 입력
+    fun srchresult() : Call<List<srchRelatedDTO>>
+
+
+    //user post 테스트
+    @FormUrlEncoded
+    @POST("user")
+    fun userData(
+        @Field("useremail") useremail : String,
+        @Field("userpw") userpw : String,
+        @Field("userbirth") userbirth : Int //int? string?
+    ) : Call<UserDTO>
+
 
 }
+
+
+
 
 /*
 interface RetrofitPost{

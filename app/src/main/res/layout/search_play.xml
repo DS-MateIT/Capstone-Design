@@ -96,8 +96,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="170dp"
                 android:layout_marginTop="0dp"
-                android:background="@drawable/border_redround"
-                android:text="일치율 30%"
+                android:background="@drawable/border_greenround"
+                android:text="일치율 70%"
                 android:textColor="#FFFFFF"
                 android:textSize="11dp"
                 android:textStyle="bold" />
@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
             android:padding="5dp"
-            android:text="택배사기"
+            android:text="설현"
             android:background="@drawable/border_round"
             android:textColor="#FFFFFF"
             android:textSize="15dp" />
@@ -147,17 +147,17 @@
             android:layout_marginTop="27dp"
             android:text="와 해당내용은"
             android:textColor="#FFFFFF"
-            android:textSize="15dp" />
+            android:textSize="17dp" />
         <TextView
             android:id="@+id/keyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
             android:layout_marginLeft="1dp"
-            android:text="30%"
+            android:text="70%"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:textSize="15dp" />
+            android:textSize="17dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
             android:layout_marginTop="27dp"
             android:text="일치하므로"
             android:textColor="#FFFFFF"
-            android:textSize="15dp" />
+            android:textSize="17dp" />
 
     </LinearLayout>
 
@@ -179,16 +179,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="관련없는 영상"
+            android:text="관련있는 영상"
             android:textStyle="bold"
-            android:textColor="#FF5959"
-            android:textSize="15dp" />
+            android:textColor="#5BAF5F"
+            android:textSize="17dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="으로 추정됩니다."
             android:textColor="#FFFFFF"
-            android:textSize="15dp" />
+            android:textSize="17dp" />
 
     </LinearLayout>
 

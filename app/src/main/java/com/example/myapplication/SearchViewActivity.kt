@@ -221,6 +221,7 @@ class SearchViewActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
+
                 //query 최근 검색어 post
                 RetrofitClient.retrofitService.srchData(query).enqueue(object: Callback<srchDTO> {
                     override fun onResponse(call: Call<srchDTO>, response: Response<srchDTO>) {

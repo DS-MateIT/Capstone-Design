@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:background="@drawable/border_redround"
-            android:text="일치율 70%"
+            android:text="일치율 20%"
             android:textColor="#FFFFFF"
             android:textSize="11dp"
             android:textStyle="bold" />
