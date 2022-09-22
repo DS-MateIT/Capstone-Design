@@ -38,14 +38,17 @@ interface RetrofitService{
         @Field("videoId") videoId : String
     ) : Call<videoIdDTO>
 
-
-
-
-
     //검색어 get 테스트
     @GET("/srch")//서버에 GET 요청을 할 주소를 입력
     fun srchresult() : Call<List<srchRelatedDTO>>
 
+    //userid get
+    @GET("/user")
+    fun useridget() : Call<List<useridDTO>>
+
+    //userid get 이메일값 같이 전달
+    @GET("/user")
+    fun useridget2(@Query("email") email:String) : Call<List<useridDTO>>
 
     //user post 테스트
     @FormUrlEncoded
@@ -55,7 +58,6 @@ interface RetrofitService{
         @Field("userpw") userpw : String,
         @Field("userbirth") userbirth : Int //int? string?
     ) : Call<UserDTO>
-
 
 }
 

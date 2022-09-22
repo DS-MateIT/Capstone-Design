@@ -98,6 +98,8 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         //북마크 클릭시 videoId 서버 전송
         val videoId = intent.getStringExtra("id").toString()
         binding.btnBook.setOnClickListener({
+
+            binding.btnBook.setImageResource(R.drawable.bookmark)
             RetrofitClient.retrofitService.bmvideoData(videoId).enqueue(object : Callback <videoIdDTO>{
                 override fun onResponse(call: Call<videoIdDTO>, response: Response<videoIdDTO>) {
                     if (response.isSuccessful) {

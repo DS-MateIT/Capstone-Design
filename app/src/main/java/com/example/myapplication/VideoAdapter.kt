@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -143,6 +144,24 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
                             .addOnSuccessListener { visionText ->
                                 val mlkit_Text : String = visionText.text
                                 binding.views.text = mlkit_Text
+
+                                //일치율 임의 테스트
+                                val range = (15..60)  // 1 <= n <= 15
+                                val test = range.random()
+
+                                val ratestring = "일치율 "
+                                val pstring = "%"
+
+
+                                binding.rate2.text = ratestring+test.toString()+pstring
+
+                                if (test > 50 )
+                                    binding.rate2.background =
+                                        ContextCompat.getDrawable(context, R.drawable.border_greenround)
+                                else
+                                    binding.rate2.background =
+                                        ContextCompat.getDrawable(context, R.drawable.border_redround)
+
                                 Log.d("mlkit",visionText.text)
 
                                 //레트로핏 전송

@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class ResponseDTO (
     var result: String)
 
-
 // 검색어, 연관검색어 get 테스트
 data class srchRelatedDTO(
     @SerializedName("srch_craw1")
@@ -18,5 +17,10 @@ data class srchRelatedDTO(
     val srch_keyword : String,
     @SerializedName("word_no")
     val word_no : Int
+)
 
+// user_id get
+data class useridDTO(
+    @SerializedName("user_id")
+    val user_id : Int
 )

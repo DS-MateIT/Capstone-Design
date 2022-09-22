@@ -17,16 +17,62 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.toolbar_search.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
+import java.lang.String
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment: Fragment()  {
-    val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = com.example.myapplication.databinding.FragmentHomeBinding.inflate(inflater, container, false)
+
+        // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
+        var user = auth.currentUser
+        var email = user?.email
+
+
+        RetrofitClient.retrofitService.useridget2(email.toString()).enqueue(object : Callback<List<useridDTO>>{
+            override fun onResponse(call: Call<List<useridDTO>>, response: Response<List<useridDTO>>) {
+                if (response.isSuccessful) {
+
+                    val id =  response.body()?.get(0)?.user_id // DB에서 userid 가져오기
+                    binding.text1.text = "안녕하세요 "+id+"님! " + email
+
+                    try {
+                        Log.v("userid_get", id.toString())
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                } else {
+                    Log.v("userid_get", "error = " + String.valueOf(response.code()))
+                }
+            }
+
+            override fun onFailure(call: Call<List<useridDTO>>, t: Throwable) {
+                Log.d("userid_get","get"+t.toString())
+            }
+        })
+        
+        return binding.root
+    }
+    /*
+    *    val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
     private lateinit var rv_recent: RecyclerView  // 최근 시청한 영상
     private lateinit var rv_favor: RecyclerView   // 선호 카테고리 영상
-
 
     //var list_recent = ArrayList<VideoItem>()
     //var adapter: VideoAdapter? = null
@@ -64,8 +110,6 @@ class HomeFragment: Fragment()  {
 
         setHasOptionsMenu(true)
         return view
-
-
     }
 
     private fun loadrecyclerViewData() {
@@ -87,13 +131,9 @@ class HomeFragment: Fragment()  {
                     rv_favor.adapter = adapter
                 }
                 */
-
             }
-
             override fun onCancelled(databaseError: DatabaseError) {}
         })
-    }
-
-
-        }
+    }*/
+}
 

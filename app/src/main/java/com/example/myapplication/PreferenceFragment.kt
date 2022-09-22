@@ -37,12 +37,11 @@ class PreferenceFragment: Fragment() {
                         val srchresult =  response.body()?.get(0)?.srch_keyword //가장 최근검색어 출력해보기
                         //binding.srchtest.text = srchresult.toString()
 
-
                         //내가 자주 검색하는 검색어 버튼 생성
                         for (srchkeyword in 0 until srchresult!!.length) {
                             var srchkeyword = Button(context).apply{
-                                width = 30
-                                height = 20
+                                //width = 30
+                                //height = 20
                                 background = getDrawable(context, R.drawable.hashtag)
                                 text = "#" + response.body()?.get(srchkeyword)?.srch_keyword
                                 val lp = LinearLayout.LayoutParams(
@@ -61,13 +60,12 @@ class PreferenceFragment: Fragment() {
                             srchwordLayout.addView(srchkeyword)
                         }
 
-
                         //연관 키워드 버튼 생성
                         for (i in 0 until srchresult!!.length) {
                             //연관검색어 1
                             var srchcraw = Button(context).apply{
-                                width = 30
-                                height = 20
+                                //width = 30
+                                //height = 20
                                 background = getDrawable(context, R.drawable.hashtag)
                                 text = "#" + response.body()?.get(i)?.srch_craw1 //craw1,2,3 다 적용하기
                                 val lp = LinearLayout.LayoutParams(
@@ -85,8 +83,8 @@ class PreferenceFragment: Fragment() {
 
                             //연관검색어 2
                             var srchcraw2 = Button(context).apply{
-                                width = 30
-                                height = 20
+                                //width = 30
+                                //height = 20
                                 background = getDrawable(context, R.drawable.hashtag)
                                 text = "#" + response.body()?.get(i)?.srch_craw2 //craw1,2,3 다 적용하기
                                 val lp = LinearLayout.LayoutParams(
@@ -104,8 +102,8 @@ class PreferenceFragment: Fragment() {
 
                             //연관검색어 3
                             var srchcraw3 = Button(context).apply{
-                                width = 30
-                                height = 20
+                                //width = 30
+                                //height = 20
                                 background = getDrawable(context, R.drawable.hashtag)
                                 text = "#" + response.body()?.get(i)?.srch_craw3 //craw1,2,3 다 적용하기
                                 val lp = LinearLayout.LayoutParams(
