@@ -70,8 +70,13 @@ open class MainActivity : AppCompatActivity() {
        */
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
+                // MainActivity -> SearchViewActivity 검색어 보내기 //검색용
                 val intent = Intent(this@MainActivity, SearchViewActivity::class.java)
                 intent.putExtra("query", "$query")
+
+                // MainActivity -> VideoPlayerActivity 검색어 보내기 //상세페이지 검색어 띄우는 용
+                val intent2 = Intent(this@MainActivity, VideoPlayerActivity::class.java)
+                intent2.putExtra("query", "$query")
 
                 //query 최근 검색어 post
                 RetrofitClient.retrofitService.srchData(query).enqueue(object: Callback<srchDTO> {

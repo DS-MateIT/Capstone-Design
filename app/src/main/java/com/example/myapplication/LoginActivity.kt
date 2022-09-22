@@ -105,6 +105,7 @@ class LoginActivity: AppCompatActivity() {
                 if(task.isSuccessful) {
                     // Login, 아이디와 패스워드가 맞았을 때
                     //Toast.makeText(this,  "success", Toast.LENGTH_LONG).show()
+                    moveMainPage(task.result?.user)
                 } else {
                     // Show the error message, 아이디와 패스워드가 틀렸을 때
                     Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()

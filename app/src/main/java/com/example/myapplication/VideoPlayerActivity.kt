@@ -1,46 +1,30 @@
 package com.example.myapplication
 
-import android.net.Uri
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.databinding.SearchFilterBinding
+import com.amazonaws.auth.AWSCredentials
+import com.amazonaws.auth.BasicAWSCredentials
+import com.amazonaws.auth.CognitoCachingCredentialsProvider
+import com.amazonaws.mobileconnectors.s3.transferutility.*
+import com.amazonaws.regions.Region
+import com.amazonaws.regions.Regions
+import com.amazonaws.services.s3.AmazonS3Client
 import com.example.myapplication.databinding.SearchPlayBinding
-import com.example.myapplication.databinding.VideoPlayerBinding
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.item_play.*
 import kotlinx.android.synthetic.main.search_play.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.io.IOException
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KProperty
 
 
 // 비디오 플레이어 - 목록에서 영상 클릭시 보여지는 화면
@@ -86,6 +70,11 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
 
         binding = SearchPlayBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        val intent2 = intent
+        srchtext.text = intent2.getStringExtra("query") //검색어 띄우기
+
+        downloadWithTransferUtility() //S3 이미지 불러오는 함수 호출
 
         videoPlayerView.initialize(getString(R.string.youtube_key), this@VideoPlayerActivity)!!
 
@@ -100,27 +89,34 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         binding.btnBook.setOnClickListener({
 
             binding.btnBook.setImageResource(R.drawable.bookmark)
-            RetrofitClient.retrofitService.bmvideoData(videoId).enqueue(object : Callback <videoIdDTO>{
-                override fun onResponse(call: Call<videoIdDTO>, response: Response<videoIdDTO>) {
-                    if (response.isSuccessful) {
-                        try {
-                            val result = response.body().toString()
-                            Log.v("videoid_bookmark", result)
+            RetrofitClient.retrofitService.bmvideoData(videoId)
+                .enqueue(object : Callback<videoIdDTO> {
+                    override fun onResponse(
+                        call: Call<videoIdDTO>,
+                        response: Response<videoIdDTO>
+                    ) {
+                        if (response.isSuccessful) {
+                            try {
+                                val result = response.body().toString()
+                                Log.v("videoid_bookmark", result)
 
-                        } catch (e: IOException) {
-                            e.printStackTrace()
+                            } catch (e: IOException) {
+                                e.printStackTrace()
+                            }
+                        } else {
+                            Log.v(
+                                "videoid_bookmark",
+                                "error = " + java.lang.String.valueOf(response.code())
+                            )
+
                         }
-                    } else {
-                        Log.v("videoid_bookmark","error = " + java.lang.String.valueOf(response.code()))
-
                     }
-                }
 
-                override fun onFailure(call: Call<videoIdDTO>, t: Throwable) {
-                    Log.d("videoid_bookmark","post"+t.toString())
-                }
+                    override fun onFailure(call: Call<videoIdDTO>, t: Throwable) {
+                        Log.d("videoid_bookmark", "post" + t.toString())
+                    }
 
-            })
+                })
         })
 
         /*
@@ -180,6 +176,65 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
 
 */
     }
+    //S3 워드클라우드 불러오기
+    
+    private fun downloadWithTransferUtility() {
+        // Cognito 샘플 코드. CredentialsProvider 객체 생성
+        val credentialsProvider = CognitoCachingCredentialsProvider(
+            applicationContext,
+            "us-east-2:98f15302-78cb-4d26-9ae4-c4ef2c378ccd",  // 자격 증명 풀 ID
+            Regions.US_EAST_2 // 리전
+        )
+
+        // 반드시 호출해야 한다.
+        TransferNetworkLossHandler.getInstance(applicationContext)
+
+        // TransferUtility 객체 생성
+        val transferUtility = TransferUtility.builder()
+            .context(applicationContext)
+            .defaultBucket("mateityoutube") // 디폴트 버킷 이름.
+            .s3Client(AmazonS3Client(credentialsProvider, Region.getRegion(Regions.US_EAST_2)))
+            .build()
+
+        // 다운로드 실행. object: "wordcloud_test.png". 두 번째 파라메터는 Local경로 File 객체.
+        // 대상 객체 ex) "Bucket_Name/SomeFile.mp4"
+        val videoId = intent.getStringExtra("id") // videoid 인텐트로 받아옴
+        val downloadObserver = transferUtility.download("${videoId}/${videoId}.png", File(cacheDir , "/${videoId}/${videoId}.png"))
+
+        // 다운로드 과정을 알 수 있도록 Listener를 추가할 수 있다.
+        downloadObserver.setTransferListener(object : TransferListener {
+            override fun onStateChanged(id: Int, state: TransferState) {
+                if (state == TransferState.COMPLETED) {
+                    Log.d("AWS", "DOWNLOAD Completed!")
+                    val imgpath = "$cacheDir/${videoId}/${videoId}.png" // 내부 저장소에 저장되어 있는 이미지 경로
+                    val bm = BitmapFactory.decodeFile(imgpath)
+
+                    binding.wordCloudImageview.setImageBitmap(bm)
+                    //내부 저장소에 저장된 이미지를 이미지뷰에 셋
+                    //이미지 뷰에 나타내기
+                }
+            }
+
+            override fun onProgressChanged(id: Int, current: Long, total: Long) {
+                try {
+                    val done = (((current.toDouble() / total) * 100.0).toInt()) //as Int
+                    Log.d("AWS", "DOWNLOAD - - ID: $id, percent done = $done")
+                } catch (e: Exception) {
+                    Log.d("AWS", "Trouble calculating progress percent", e)
+                }
+            }
+
+            override fun onError(id: Int, ex: Exception) {
+                Log.d("AWS", "DOWNLOAD ERROR - - ID: $id - - EX: ${ex.message.toString()}")
+            }
+        })
+    }
+
+   
+    //워드클라우드 끝
+
+
+
 
     private fun getresult() {
         val gson: Gson = GsonBuilder()
