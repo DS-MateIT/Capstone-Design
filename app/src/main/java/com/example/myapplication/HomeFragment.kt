@@ -1,22 +1,14 @@
 package com.example.myapplication
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.databinding.FragmentHomeBinding
+import com.bumptech.glide.Glide
+import com.google.android.youtube.player.YouTubeStandalonePlayer
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.toolbar_search.*
@@ -25,10 +17,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 import java.lang.String
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.google.firebase.auth.FirebaseAuth
+import kotlin.Throwable
+import kotlin.toString
 
 class HomeFragment: Fragment()  {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -66,8 +56,32 @@ class HomeFragment: Fragment()  {
                 Log.d("userid_get","get"+t.toString())
             }
         })
-        
+
+
+
+        //Intro 노그로 소개영상 썸네일 띄우기
+        val introvideoId = "n3xMgsKzZfE"
+        Glide.with(requireContext()!!)
+            .load("https://img.youtube.com/vi/n3xMgsKzZfE/maxresdefault.jpg")
+            .centerCrop()
+            .into(binding.introvideo)
+
+        binding.introvideo!!.setOnClickListener{
+            val intent = YouTubeStandalonePlayer.createVideoIntent(
+                context as Activity,
+                "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk", //유튜브 api 키
+                introvideoId, //비디오 id
+                0, //몇초후 재생
+                true, //자동실행 할지 말지
+                true //작은 뷰박스에서 재생할지 말지 false하면 풀화면으로 재생
+            )
+            requireContext().startActivity(intent)
+        }
+
+
         return binding.root
+
+
     }
     /*
     *    val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }

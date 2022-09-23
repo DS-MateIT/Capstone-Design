@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="283dp"
         android:background="@drawable/border_round"
-        android:hint="아이디"
+        android:hint="이메일 주소를 입력해주세요"
         android:textColor="#979797"
         android:textColorHint="#979797" />
 
@@ -33,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="349dp"
         android:background="@drawable/border_round"
-        android:hint="비밀번호"
+        android:hint="비밀번호를 6자리 이상 입력해주세요 "
         android:textColor="#979797"
         android:textColorHint="#979797" />
 
@@ -44,7 +44,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="415dp"
         android:background="@drawable/border_round"
-        android:hint="생년월일   ex)20220903"
+        android:hint="생년월일  ex)20220903"
         android:textColor="#979797"
         android:textColorHint="#979797" />
 
