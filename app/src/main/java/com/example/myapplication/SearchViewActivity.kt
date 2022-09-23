@@ -149,7 +149,7 @@ class SearchViewActivity : AppCompatActivity() {
 
         //homeFragment 검색결과 가져오기
         var call: Call<SearchListResponse> = MyApplication.networkService.getList(
-            "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk",
+            getString(R.string.youtube_key),
             query.toString(),
             "video",
             "snippet"
