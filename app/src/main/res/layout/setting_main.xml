@@ -6,6 +6,7 @@
     android:background="@color/main_theme"
     android:orientation="vertical">
 
+
     <!-- 유저 프로필 -->
 
     <LinearLayout
@@ -37,11 +38,11 @@
                 android:textSize="17sp" />
 
             <TextView
-                android:id="@+id/user_id"
+                android:id="@+id/user_id1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/id_text"
-                android:text="@string/id"
+                android:text="snoww"
                 android:textColor="@color/text"
                 android:textSize="17sp" />
 
@@ -67,7 +68,9 @@
         </RelativeLayout>
     </LinearLayout>
 
+
     <!-- 설정 메뉴 -->
+        <!-- 1.프로필수정 -->
     <LinearLayout
         android:id="@+id/editprofile"
         android:clickable="true"
@@ -76,14 +79,14 @@
         android:orientation="horizontal"
         android:layout_marginTop="40dp">
 
-        <!-- 트리거 워닝 -->
+        <!-- 아이콘 트리거 워닝 -->
         <ImageView
             android:id="@+id/trigger_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:src="@drawable/warning" />
-
+        <!-- 텍스트 프로필 수정 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,8 +110,8 @@
                 android:scaleType="center"
                 android:src="@drawable/arrow_right" />
         </LinearLayout>
-
     </LinearLayout>
+    <!-- 구분선 그리기 -->
     <View
         android:layout_width="wrap_content"
         android:layout_height="1dp"
@@ -116,15 +119,17 @@
         android:layout_marginRight="20dp"
         android:background="@color/divider"/>
 
+
+    <!-- 2.About Us -->
     <LinearLayout
-        android:id="@+id/aboutus"
+        android:id="@+id/about_us"
         android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="40dp">
 
-        <!-- 선호도 -->
+        <!-- 아이콘 선호도 -->
         <ImageView
             android:id="@+id/pref_icon"
             android:layout_width="wrap_content"
@@ -154,8 +159,8 @@
                 android:background="@color/main_theme"
                 android:src="@drawable/arrow_right" />
         </LinearLayout>
-
     </LinearLayout>
+
     <!-- 구분선 그리기 -->
     <View
         android:layout_width="wrap_content"
@@ -164,6 +169,7 @@
         android:layout_marginRight="20dp"
         android:background="@color/divider"/>
 
+    <!-- 3.비밀번호 재설정 -->
     <LinearLayout
         android:id="@+id/to_password"
         android:clickable="true"
