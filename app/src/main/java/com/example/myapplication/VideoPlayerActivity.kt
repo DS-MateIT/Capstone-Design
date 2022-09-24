@@ -4,8 +4,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import com.amazonaws.auth.AWSCredentials
-import com.amazonaws.auth.BasicAWSCredentials
+import android.widget.Toast
 import com.amazonaws.auth.CognitoCachingCredentialsProvider
 import com.amazonaws.mobileconnectors.s3.transferutility.*
 import com.amazonaws.regions.Region
@@ -15,6 +14,7 @@ import com.example.myapplication.databinding.SearchPlayBinding
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.search_play.*
@@ -29,6 +29,7 @@ import java.io.IOException
 
 // 비디오 플레이어 - 목록에서 영상 클릭시 보여지는 화면
 class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var binding: SearchPlayBinding
 
     override fun onInitializationSuccess(
@@ -84,41 +85,75 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         //sendReq()
         getresult()
 
-        //북마크 클릭시 videoId 서버 전송
+        // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
+        var user = auth.currentUser
+        var email = user?.email
+        var i = false
+
         val videoId = intent.getStringExtra("id").toString()
-        binding.btnBook.setOnClickListener({
 
-            binding.btnBook.setImageResource(R.drawable.bookmark)
-            RetrofitClient.retrofitService.bmvideoData(videoId)
-                .enqueue(object : Callback<videoIdDTO> {
-                    override fun onResponse(
-                        call: Call<videoIdDTO>,
-                        response: Response<videoIdDTO>
-                    ) {
-                        if (response.isSuccessful) {
-                            try {
-                                val result = response.body().toString()
-                                Log.v("videoid_bookmark", result)
+        binding.btnBook.setOnClickListener {
+            //북마크 클릭시 videoId 서버 전송
+            if (i == false){
+                binding.btnBook.setImageResource(R.drawable.bookmark_fill)
+                RetrofitClient.retrofitService.bmvideoData(email.toString(),videoId)
+                    .enqueue(object : Callback<bookmarkDTO> {
+                        override fun onResponse(
+                            call: Call<bookmarkDTO>,
+                            response: Response<bookmarkDTO>
+                        ) {
+                            if (response.isSuccessful) {
+                                try {
+                                    val result = response.body().toString()
+                                    Log.v("videoid_bookmark", result)
 
-                            } catch (e: IOException) {
-                                e.printStackTrace()
+                                } catch (e: IOException) {
+                                    e.printStackTrace()
+                                }
+                            } else {
+                                Log.v(
+                                    "videoid_bookmark",
+                                    "error = " + java.lang.String.valueOf(response.code())
+                                )
                             }
-                        } else {
-                            Log.v(
-                                "videoid_bookmark",
-                                "error = " + java.lang.String.valueOf(response.code())
-                            )
-
                         }
-                    }
+                        override fun onFailure(call: Call<bookmarkDTO>, t: Throwable) {
+                            Log.d("videoid_bookmark", "post" + t.toString())
+                        }
+                    })
+                i = true
+                Toast.makeText(this, "북마크 저장", Toast.LENGTH_LONG).show()
+            }else {
+                binding.btnBook.setImageResource(R.drawable.bookmark_empty)
+                RetrofitClient.retrofitService.bmvideoData(email.toString(),videoId)
+                    .enqueue(object : Callback<bookmarkDTO> {
+                        override fun onResponse(
+                            call: Call<bookmarkDTO>,
+                            response: Response<bookmarkDTO>
+                        ) {
+                            if (response.isSuccessful) {
+                                try {
+                                    val result = response.body().toString()
+                                    Log.v("videoid_bookmark", result)
 
-                    override fun onFailure(call: Call<videoIdDTO>, t: Throwable) {
-                        Log.d("videoid_bookmark", "post" + t.toString())
-                    }
-
-                })
-        })
-
+                                } catch (e: IOException) {
+                                    e.printStackTrace()
+                                }
+                            } else {
+                                Log.v(
+                                    "videoid_bookmark",
+                                    "error = " + java.lang.String.valueOf(response.code())
+                                )
+                            }
+                        }
+                        override fun onFailure(call: Call<bookmarkDTO>, t: Throwable) {
+                            Log.d("videoid_bookmark", "post" + t.toString())
+                        }
+                    })
+                i = false
+                Toast.makeText(this, "북마크 삭제", Toast.LENGTH_LONG).show()
+            }
+        }
         /*
         factory = DefaultDataSourceFactory(applicationContext, "Ex90ExoPlayer") // 매개 두번째는 임의로 그냥 적음
         mediaFactory= ProgressiveMediaSource.Factory(factory)

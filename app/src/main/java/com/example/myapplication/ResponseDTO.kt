@@ -24,3 +24,10 @@ data class useridDTO(
     @SerializedName("user_id")
     val user_id : Int
 )
+// 북마크
+data class bookmarkDTO(
+    @SerializedName("useremail")
+    var useremail: String,
+    @SerializedName("videoid")
+    var videoid: String
+)

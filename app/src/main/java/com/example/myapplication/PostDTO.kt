@@ -30,6 +30,5 @@ data class UserDTO(
     @SerializedName("userpw")
     var userpw : String,
     @SerializedName("userbirth")
-    var userbirth : Int //int? string?
-
+    var userbirth : Int
     )

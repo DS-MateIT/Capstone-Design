@@ -31,12 +31,13 @@ interface RetrofitService{
         @Field("videoId") videoId : String
     ) : Call<videoIdDTO>
 
-    //videoId post - 북마크
+    //북마크 - 유저 이메일과  videoid post
     @FormUrlEncoded
     @POST("BMvideoid")
     fun bmvideoData(
-        @Field("videoId") videoId : String
-    ) : Call<videoIdDTO>
+        @Field("useremail") useremail : String,
+        @Field("videoid") videoid : String
+    ) : Call<bookmarkDTO>
 
     //검색어 get 테스트
     @GET("/srch")//서버에 GET 요청을 할 주소를 입력
