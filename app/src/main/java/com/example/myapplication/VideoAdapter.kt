@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -97,7 +98,7 @@ class VideoAdapter(var context: Context, var videoItems: ArrayList<VideoItem>) :
  */
 
 class MyViewHolder(val binding: ItemSearchBinding): RecyclerView.ViewHolder(binding.root)
-class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val word: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun getItemCount(): Int {
@@ -145,8 +146,9 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
                                 val mlkit_Text : String = visionText.text
                                 binding.views.text = mlkit_Text
 
+
                                 //일치율 임의 테스트
-                                val range = (15..60)  // 1 <= n <= 15
+                                /*val range = (15..60)  // 1 <= n <= 15
                                 val test = range.random()
 
                                 val ratestring = "일치율 "
@@ -161,7 +163,7 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
                                 else
                                     binding.rate2.background =
                                         ContextCompat.getDrawable(context, R.drawable.border_redround)
-
+*/
                                 Log.d("mlkit",visionText.text)
 
                                 //레트로핏 전송
@@ -212,7 +214,58 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?) : Rec
                     }
                 })
 
+        // 검색어 get, 연관검색어
+        // datas!![position].id!!.videoId.toString()
+        RetrofitClient.retrofitService.rateResult(word, datas!![position].id!!.videoId.toString()).enqueue(object : Callback<List<SrchRateDTO>> {
+            override fun onResponse(
+                call: Call<List<SrchRateDTO>> ,
+                response: Response<List<SrchRateDTO>>
+            )
+            {
+                if (response.isSuccessful) {
+                    Log.d("rate","!!!!!!!!!!!!!!Rate!!!!!!!!!!")
+                    //for(i in 0..4){
+                    val result = response.body()?.get(0)?.rate
+                    /*val result0 = response.body()?.get(i)?.result0
+                    val result1 = response.body()?.get(i)?.result1
+                    val result2 = response.body()?.get(i)?.result2
+                    val result3 = response.body()?.get(i)?.result3
+                    val result4 = response.body()?.get(i)?.result4
 
+                    val resultList: List<Float> =
+                        listOf(result0, result1, result2, result3, result4) as List<Float>
+*/
+
+                    Log.d("rate",result.toString())
+
+                    if (result != null) {
+                        binding.rate2.text = "일치율 " + result.toString() + "%"
+                    }
+                    //if (result != null) {
+                    if (result != null) {
+                        if (result > 50 )
+                            binding.rate2.background =
+                                ContextCompat.getDrawable(context, R.drawable.border_greenround)
+                        else
+                            binding.rate2.background =
+                                ContextCompat.getDrawable(context, R.drawable.border_redround)
+                    }
+                    //}
+
+                    //}
+
+                }
+                else{
+                    Log.v("rate", "retrofit 실패!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                }
+
+            }
+            override fun onFailure(call: Call<List<SrchRateDTO>>, t: Throwable) {
+                Log.d("retrofit", "에러입니다. => ${t.message.toString()}")
+            }
+
+
+        })
 
 
 

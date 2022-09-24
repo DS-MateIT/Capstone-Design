@@ -43,7 +43,7 @@ class HomeFragment: Fragment()  {
                     binding.text1.text = "안녕하세요 "+id+"님! " + email
 
                     try {
-                        Log.v("userid_get", id.toString())
+                        //Log.v("userid_get", id.toString())
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }

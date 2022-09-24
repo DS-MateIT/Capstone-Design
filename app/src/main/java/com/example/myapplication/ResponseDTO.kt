@@ -5,6 +5,18 @@ import com.google.gson.annotations.SerializedName
 data class ResponseDTO (
     var result: String)
 
+data class SrchRateDTO (
+    //@SerializedName("srch_word")
+    //var srch_word: String,
+
+    //@SerializedName("video_id")
+    //var video_id: String,
+
+    @SerializedName("rate")
+    var rate: Float
+)
+
+
 // 검색어, 연관검색어 get 테스트
 data class srchRelatedDTO(
     @SerializedName("srch_craw1")

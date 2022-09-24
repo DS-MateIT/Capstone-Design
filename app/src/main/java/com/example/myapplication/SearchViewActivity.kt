@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
@@ -141,6 +142,7 @@ class SearchViewActivity : AppCompatActivity() {
         binding = com.example.myapplication.databinding.SearchFilterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
 
         val intent = intent
@@ -164,7 +166,7 @@ class SearchViewActivity : AppCompatActivity() {
                     binding.recyclerview.layoutManager =
                         LinearLayoutManager(this@SearchViewActivity)
                     binding.recyclerview.adapter =
-                        MyAdapter(this@SearchViewActivity, response.body()?.items)
+                        MyAdapter(this@SearchViewActivity, response.body()?.items, query.toString())
                 }
             }
 
@@ -267,7 +269,7 @@ class SearchViewActivity : AppCompatActivity() {
                             binding.recyclerview.layoutManager =
                                 LinearLayoutManager(this@SearchViewActivity)
                             binding.recyclerview.adapter =
-                                MyAdapter(this@SearchViewActivity, response.body()?.items)
+                                MyAdapter(this@SearchViewActivity, response.body()?.items, query)
                         }
                     }
 
