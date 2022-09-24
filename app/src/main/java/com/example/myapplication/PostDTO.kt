@@ -19,7 +19,7 @@ data class srchDTO(
 )
 
 data class videoIdDTO(
-    @SerializedName("videoid")
+    @SerializedName("video_id")
     var videoId: String
 )
 

@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.youtube.player.YouTubeStandalonePlayer
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
-import kotlinx.android.synthetic.main.toolbar_search.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +20,11 @@ import kotlin.toString
 
 class HomeFragment: Fragment()  {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    //최근시청영상 recyclerview
+    val recentvideoArray : ArrayList<SearchResult> = ArrayList()
+    lateinit var item_recent: RecyclerView
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,12 +38,14 @@ class HomeFragment: Fragment()  {
         var email = user?.email
 
 
+
         RetrofitClient.retrofitService.useridget2(email.toString()).enqueue(object : Callback<List<useridDTO>>{
             override fun onResponse(call: Call<List<useridDTO>>, response: Response<List<useridDTO>>) {
                 if (response.isSuccessful) {
 
-                    val id =  response.body()?.get(0)?.user_id // DB에서 userid 가져오기
-                    binding.text1.text = "안녕하세요 "+id+"님! " + email
+                    val id = response.body()?.get(0)?.user_id // DB에서 userid 가져오기
+                    var name = email?.split('@')
+                    binding.text1.text = "안녕하세요 " + (name?.get(0)) + "님! "
 
                     try {
                         //Log.v("userid_get", id.toString())
@@ -60,16 +65,16 @@ class HomeFragment: Fragment()  {
 
 
         //Intro 노그로 소개영상 썸네일 띄우기
-        val introvideoId = "n3xMgsKzZfE"
+        val introvideoId = "jsulDJWwXcE"
         Glide.with(requireContext()!!)
-            .load("https://img.youtube.com/vi/n3xMgsKzZfE/maxresdefault.jpg")
+            .load("https://img.youtube.com/vi/jsulDJWwXcE/maxresdefault.jpg")
             .centerCrop()
             .into(binding.introvideo)
 
         binding.introvideo!!.setOnClickListener{
             val intent = YouTubeStandalonePlayer.createVideoIntent(
                 context as Activity,
-                "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk", //유튜브 api 키
+                getString(R.string.youtube_key), //유튜브 api 키
                 introvideoId, //비디오 id
                 0, //몇초후 재생
                 true, //자동실행 할지 말지
@@ -77,6 +82,8 @@ class HomeFragment: Fragment()  {
             )
             requireContext().startActivity(intent)
         }
+
+
 
 
         return binding.root

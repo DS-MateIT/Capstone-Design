@@ -14,8 +14,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.SearchFilterBinding
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.*
 import java.io.IOException
 import java.util.concurrent.Executor
@@ -178,15 +180,19 @@ class SearchViewActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar);
 
+
         //스피너 필터링
         var filter = resources.getStringArray(R.array.filtering)
         var adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, filter)
         binding.spinner.adapter = adapter
 
+        var result =
+
         binding.spinner.setSelection(0)
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 //item선택했을때
+
                 when (position) {
                     0 -> {
                         //0 : 필터링 게시물 - 일치율 받아와서 필터링 구현필요
@@ -195,6 +201,8 @@ class SearchViewActivity : AppCompatActivity() {
                             filter[position],
                             Toast.LENGTH_SHORT
                         ).show()
+
+
                     }
                     1 -> {
                         //1 : 전체 게시물 보여주기
@@ -214,6 +222,8 @@ class SearchViewActivity : AppCompatActivity() {
             }
 
     }
+
+
 
     }
     //searchviewActivity에 있는 서치뷰
@@ -254,7 +264,7 @@ class SearchViewActivity : AppCompatActivity() {
 
                 
                 var call: Call<SearchListResponse> = MyApplication.networkService.getList(
-                    "AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk",
+                    getString(R.string.youtube_key),
                     query.toString(),
                     "video",
                     "snippet"

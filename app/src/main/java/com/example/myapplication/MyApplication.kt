@@ -6,6 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MyApplication: Application() {
     companion object {
+        var videoIDlist: VideoIDlist
         var networkService: NetworkService
         val retrofit: Retrofit
             get() = Retrofit.Builder()
@@ -15,6 +16,7 @@ class MyApplication: Application() {
 
         init {
             networkService = retrofit.create(NetworkService::class.java)
+            videoIDlist = retrofit.create(VideoIDlist::class.java)
         }
     }
 }

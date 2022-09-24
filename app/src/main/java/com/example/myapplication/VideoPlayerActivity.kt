@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.amazonaws.auth.CognitoCachingCredentialsProvider
 import com.amazonaws.mobileconnectors.s3.transferutility.*
 import com.amazonaws.regions.Region
@@ -14,6 +15,7 @@ import com.example.myapplication.databinding.SearchPlayBinding
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
+import com.google.android.youtube.player.internal.t
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -73,8 +75,11 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         setContentView(binding.root)
         
         val intent2 = intent
-        srchtext.text = intent2.getStringExtra("query") //검색어 띄우기
-
+        //srchtext.text = intent2.getStringExtra("query") //검색어 띄우기
+        srchtext.text = "아가씨 리뷰" //임시 텍스트
+        
+        
+        
         downloadWithTransferUtility() //S3 이미지 불러오는 함수 호출
 
         videoPlayerView.initialize(getString(R.string.youtube_key), this@VideoPlayerActivity)!!
@@ -91,6 +96,73 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         var i = false
 
         val videoId = intent.getStringExtra("id").toString()
+
+
+
+        // 검색어 get, 연관검색어
+        // datas!![position].id!!.videoId.toString()
+        RetrofitClient.retrofitService.rateResult("아가씨 리뷰", videoId).enqueue(object : Callback<List<SrchRateDTO>> {
+            override fun onResponse(
+                call: Call<List<SrchRateDTO>> ,
+                response: Response<List<SrchRateDTO>>
+            )
+            {
+                if (response.isSuccessful) {
+                    Log.d("rate","!!!!!!!!!!!!!!Rate!!!!!!!!!!")
+                    //for(i in 0..4){
+                    val result = response.body()?.get(0)?.rate
+
+                    /*val result0 = response.body()?.get(i)?.result0
+                    val result1 = response.body()?.get(i)?.result1
+                    val result2 = response.body()?.get(i)?.result2
+                    val result3 = response.body()?.get(i)?.result3
+                    val result4 = response.body()?.get(i)?.result4
+
+                    val resultList: List<Float> =
+                        listOf(result0, result1, result2, result3, result4) as List<Float>
+*/
+                    Log.d("rate",result.toString())
+
+                    if (result != null) {
+                        binding.rate3.text = "일치율 " + result.toString() + "%"
+                        binding.ratekeyword.text = result.toString() + "%"
+                    }
+                    //if (result != null) {
+                    if (result != null) {
+                        if (result > 50 ) {
+                            binding.rate3.background =
+                                ContextCompat.getDrawable(this@VideoPlayerActivity,
+                                    R.drawable.border_greenround
+                                )
+                            binding.connection.text = "관련있는 영상"
+                            binding.connection.setTextColor(ContextCompat.getColor(applicationContext!!, R.color.green))
+                        }
+                        else {
+                            binding.rate3.background =
+                                ContextCompat.getDrawable(this@VideoPlayerActivity, R.drawable.border_redround)
+                            binding.connection.text = "관련없는 영상"
+                            binding.connection.setTextColor(ContextCompat.getColor(applicationContext!!, R.color.red))
+                        }
+
+                    }
+                    //}
+
+                }
+                else{
+                    Log.v("rate", "retrofit 실패!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                }
+
+            }
+            override fun onFailure(call: Call<List<SrchRateDTO>>, t: Throwable) {
+                Log.d("retrofit", "에러입니다. => ${t.message.toString()}")
+            }
+
+
+        })
+
+
+
+
 
         binding.btnBook.setOnClickListener {
             //북마크 클릭시 videoId 서버 전송
@@ -211,8 +283,8 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
 
 */
     }
-    //S3 워드클라우드 불러오기
     
+    //S3 워드클라우드 불러오기
     private fun downloadWithTransferUtility() {
         // Cognito 샘플 코드. CredentialsProvider 객체 생성
         val credentialsProvider = CognitoCachingCredentialsProvider(
@@ -221,7 +293,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
             Regions.US_EAST_2 // 리전
         )
 
-        // 반드시 호출해야 한다.
+        // 반드시 호출
         TransferNetworkLossHandler.getInstance(applicationContext)
 
         // TransferUtility 객체 생성
@@ -234,14 +306,14 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         // 다운로드 실행. object: "wordcloud_test.png". 두 번째 파라메터는 Local경로 File 객체.
         // 대상 객체 ex) "Bucket_Name/SomeFile.mp4"
         val videoId = intent.getStringExtra("id") // videoid 인텐트로 받아옴
-        val downloadObserver = transferUtility.download("${videoId}/${videoId}.png", File(cacheDir , "/${videoId}/${videoId}.png"))
+        val downloadObserver = transferUtility.download("youtube_datas/${videoId}/${videoId}.png", File(cacheDir , "/youtube_datas/${videoId}/${videoId}.png"))
 
-        // 다운로드 과정을 알 수 있도록 Listener를 추가할 수 있다.
+        // 다운로드 과정을 알 수 있도록 Listener를 추가
         downloadObserver.setTransferListener(object : TransferListener {
             override fun onStateChanged(id: Int, state: TransferState) {
                 if (state == TransferState.COMPLETED) {
                     Log.d("AWS", "DOWNLOAD Completed!")
-                    val imgpath = "$cacheDir/${videoId}/${videoId}.png" // 내부 저장소에 저장되어 있는 이미지 경로
+                    val imgpath = "$cacheDir/youtube_datas/${videoId}/${videoId}.png" // 내부 저장소에 저장되어 있는 이미지 경로
                     val bm = BitmapFactory.decodeFile(imgpath)
 
                     binding.wordCloudImageview.setImageBitmap(bm)

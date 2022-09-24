@@ -28,6 +28,7 @@ interface RetrofitService{
     @FormUrlEncoded
     @POST("videoid")
     fun videoData(
+        @Field("email") email: String,
         @Field("videoId") videoId : String
     ) : Call<videoIdDTO>
 
@@ -65,6 +66,14 @@ interface RetrofitService{
         @Field("userbirth") userbirth : Int //int? string?
     ) : Call<UserDTO>
 
+
+    //userid get
+    @GET("/videoid")
+    fun videoIdget(
+        @Query("email") email:String
+    ) : Call<List<videoIdDTO>>
+
+
 }
 
 
@@ -86,6 +95,15 @@ interface NetworkService {
         @Query("key") key:String,
         @Query("q") search_query : String,
         @Query("type") returnType: String,
+        @Query("part") returnData : String
+    ): Call<SearchListResponse>
+}
+
+interface VideoIDlist {
+    @GET("youtube/v3/videos")
+    fun getvideoList(
+        @Query("key") key:String,
+        @Query("id") id:String,
         @Query("part") returnData : String
     ): Call<SearchListResponse>
 }

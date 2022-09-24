@@ -8,6 +8,9 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,6 +19,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.myapplication.databinding.ItemSearchBinding
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
@@ -241,17 +245,23 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
                     if (result != null) {
                         binding.rate2.text = "일치율 " + result.toString() + "%"
                     }
+
+
+
+
                     //if (result != null) {
                     if (result != null) {
                         if (result > 50 )
                             binding.rate2.background =
                                 ContextCompat.getDrawable(context, R.drawable.border_greenround)
+
                         else
                             binding.rate2.background =
                                 ContextCompat.getDrawable(context, R.drawable.border_redround)
-                    }
-                    //}
 
+
+
+                    }
                     //}
 
                 }
@@ -268,6 +278,12 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
         })
 
 
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+        // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
+        var user = auth.currentUser
+        var email = user?.email
+
 
         //VideoPlayerActivity로 이동하여 재생
         holder.itemView.setOnClickListener {
@@ -278,7 +294,7 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
             val videoId = datas!![position].id!!.videoId.toString()
 
             //videoID값 전송 - 최근 시청한 영상에 쓰일것임 아마도
-            RetrofitClient.retrofitService.videoData(videoId).enqueue(object : Callback<videoIdDTO>{
+            RetrofitClient.retrofitService.videoData(email!!,videoId).enqueue(object : Callback<videoIdDTO>{
                 override fun onResponse(call: Call<videoIdDTO>, response: Response<videoIdDTO>) {
                     if (response.isSuccessful) {
                         try {

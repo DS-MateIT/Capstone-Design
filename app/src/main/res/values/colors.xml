@@ -15,4 +15,8 @@
     <color name="divider">#454545</color>
     <color name="alert">#2D2D2D</color>
 
+
+    <color name="green">#5BAF5F</color>
+    <color name="red">#FF5959</color>
+
 </resources>

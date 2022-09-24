@@ -159,16 +159,18 @@
             android:text="와 해당내용은"
             android:textColor="#FFFFFF"
             android:textSize="17dp" />
+
         <TextView
-            android:id="@+id/keyword"
+            android:id="@+id/ratekeyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
             android:layout_marginLeft="1dp"
+            android:layout_marginTop="27dp"
             android:text="70%"
-            android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:textSize="17dp" />
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
