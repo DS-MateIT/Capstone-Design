@@ -229,7 +229,39 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
                 if (response.isSuccessful) {
                     Log.d("rate","!!!!!!!!!!!!!!Rate!!!!!!!!!!")
                     //for(i in 0..4){
-                    val result = response.body()?.get(0)?.rate
+                    if(response.body()?.size != 0) {
+                        val result = response.body()?.get(0)?.rate
+
+                        Log.d("rate",result.toString())
+
+                        if (result != null) {
+                            binding.rate2.text = "일치율 " + result.toString() + "%"
+                        }
+
+
+
+
+                        //if (result != null) {
+                        if (result != null) {
+                            if (result > 50 )
+                                binding.rate2.background =
+                                    ContextCompat.getDrawable(context, R.drawable.border_greenround)
+
+                            else
+                                binding.rate2.background =
+                                    ContextCompat.getDrawable(context, R.drawable.border_redround)
+
+
+
+                        }
+                        //}
+
+                    }
+
+
+                    }
+
+
                     /*val result0 = response.body()?.get(i)?.result0
                     val result1 = response.body()?.get(i)?.result1
                     val result2 = response.body()?.get(i)?.result2
@@ -240,31 +272,7 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
                         listOf(result0, result1, result2, result3, result4) as List<Float>
 */
 
-                    Log.d("rate",result.toString())
 
-                    if (result != null) {
-                        binding.rate2.text = "일치율 " + result.toString() + "%"
-                    }
-
-
-
-
-                    //if (result != null) {
-                    if (result != null) {
-                        if (result > 50 )
-                            binding.rate2.background =
-                                ContextCompat.getDrawable(context, R.drawable.border_greenround)
-
-                        else
-                            binding.rate2.background =
-                                ContextCompat.getDrawable(context, R.drawable.border_redround)
-
-
-
-                    }
-                    //}
-
-                }
                 else{
                     Log.v("rate", "retrofit 실패!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 }

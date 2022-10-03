@@ -1,6 +1,6 @@
 package com.example.myapplication
 
-/*
+//최근 시청 영상 - firebase 임시 데이터
 import java.io.Serializable
 
 class VideoItem: Serializable{
@@ -18,8 +18,11 @@ class VideoItem: Serializable{
 
     constructor() {}
 }
- */
 
+
+
+
+//youtube api
 data class SearchListResponse(
     val items:ArrayList<SearchResult> = ArrayList<SearchResult>()
 

@@ -29,7 +29,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 
-/*
+//최근 시청동영상 - firebase 임시 데이터
 class RecentItemAdapter(var context: Context, private val items: ArrayList<VideoItem> ) :
     RecyclerView.Adapter<RecentItemAdapter.VH>() {
     override fun onCreateViewHolder(
@@ -77,13 +77,16 @@ class RecentItemAdapter(var context: Context, private val items: ArrayList<Video
             }
         }
         init {
-            Image = itemView.findViewById(R.id.recentVideo)
-            title = itemView.findViewById(R.id.videoTitle)
+            Image = itemView.findViewById(R.id.recent_Thumbnail)
+            title = itemView.findViewById(R.id.recent_Title)
         }
     }
 }
 
-*/
+
+
+//youtubeapi videoid를 이용 최근 시청 영상 가져오기 - 미완성
+/*
 class recentViewHolder(val binding: ItemRecentBinding): RecyclerView.ViewHolder(binding.root)
 class recentAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val recentVideoId: SearchResultId) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -190,3 +193,5 @@ class recentAdapter(val context: Context, val datas: ArrayList<SearchResult>?, v
 
 
 }
+
+ */

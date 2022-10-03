@@ -156,7 +156,8 @@ class SearchViewActivity : AppCompatActivity() {
             getString(R.string.youtube_key),
             query.toString(),
             "video",
-            "snippet"
+            "snippet",
+            "relevance"
         )
 
         call?.enqueue(object : Callback<SearchListResponse> {
@@ -267,7 +268,8 @@ class SearchViewActivity : AppCompatActivity() {
                     getString(R.string.youtube_key),
                     query.toString(),
                     "video",
-                    "snippet"
+                    "snippet",
+                    "relevance"
                 )
 
                 call?.enqueue(object : Callback<SearchListResponse> {

@@ -8,8 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.android.youtube.player.YouTubeStandalonePlayer
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,9 +28,20 @@ import kotlin.toString
 class HomeFragment: Fragment()  {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    //최근시청영상 recyclerview
-    val recentvideoArray : ArrayList<SearchResult> = ArrayList()
-    lateinit var item_recent: RecyclerView
+    //최근시청영상 youtubeapi  recyclerview - 미완성
+    //val recentvideoArray : ArrayList<SearchResult> = ArrayList()
+    //lateinit var item_recent: RecyclerView
+
+    //firebase 임시 데이터
+    private lateinit var rv_recent: RecyclerView  // 최근 시청한 영상
+    private lateinit var rv_favor: RecyclerView   // 선호 카테고리 영상
+
+    var list_recent = ArrayList<VideoItem>()
+
+
+    val menu: Menu? = null
+
+
 
 
     override fun onCreateView(
@@ -31,13 +49,13 @@ class HomeFragment: Fragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = com.example.myapplication.databinding.FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+
+        // youtubeapi videoid로 영상 불러오기 - 미완성
         // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
         var user = auth.currentUser
         var email = user?.email
-
-
 
         RetrofitClient.retrofitService.useridget2(email.toString()).enqueue(object : Callback<List<useridDTO>>{
             override fun onResponse(call: Call<List<useridDTO>>, response: Response<List<useridDTO>>) {
@@ -85,11 +103,49 @@ class HomeFragment: Fragment()  {
 
 
 
+        //firebase 임시데이터
+        rv_recent = binding.itemRecent //최근 동영상 어댑터 1
+        loadrecyclerViewData()
+        rv_favor = binding.itemFavorite //선호 동영상 어댑터 2
+        loadrecyclerViewData()
+        setHasOptionsMenu(true)
+
+
+
+
 
         return binding.root
 
 
     }
+
+    //firebase 임시 데이터
+    private fun loadrecyclerViewData() {
+        //val reference = FirebaseDatabase.getInstance().getReference("videos")
+        val reference = Firebase.database.getReference("videos")
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                //list_recent.clear()
+                // db 데이터를 가져와서 그 중 썸네일 이미지를 recyclerview에 표시
+
+                for (dataSnapshot1 in dataSnapshot.children) {
+                    val item: VideoItem? = dataSnapshot1.getValue(VideoItem::class.java)
+                    if (item != null) {
+                        list_recent.add(item)
+                    }
+                    val adapter1 = RecentItemAdapter(requireContext(), list_recent)
+                    rv_recent.adapter = adapter1
+
+
+                    rv_favor.adapter = adapter1
+                }
+
+            }
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
+    }
+
+
     /*
     *    val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
     private lateinit var rv_recent: RecyclerView  // 최근 시청한 영상

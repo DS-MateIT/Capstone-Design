@@ -108,45 +108,60 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
             )
             {
                 if (response.isSuccessful) {
-                    Log.d("rate","!!!!!!!!!!!!!!Rate!!!!!!!!!!")
+                    Log.d("rate", "!!!!!!!!!!!!!!Rate!!!!!!!!!!")
                     //for(i in 0..4){
-                    val result = response.body()?.get(0)?.rate
+                    if (response.body()?.size != 0) {
+                        val result = response.body()?.get(0)?.rate
 
-                    /*val result0 = response.body()?.get(i)?.result0
-                    val result1 = response.body()?.get(i)?.result1
-                    val result2 = response.body()?.get(i)?.result2
-                    val result3 = response.body()?.get(i)?.result3
-                    val result4 = response.body()?.get(i)?.result4
+                        /*val result0 = response.body()?.get(i)?.result0
+                        val result1 = response.body()?.get(i)?.result1
+                        val result2 = response.body()?.get(i)?.result2
+                        val result3 = response.body()?.get(i)?.result3
+                        val result4 = response.body()?.get(i)?.result4
 
-                    val resultList: List<Float> =
-                        listOf(result0, result1, result2, result3, result4) as List<Float>
-*/
-                    Log.d("rate",result.toString())
+                        val resultList: List<Float> =
+                            listOf(result0, result1, result2, result3, result4) as List<Float>
+    */
+                        Log.d("rate", result.toString())
 
-                    if (result != null) {
-                        binding.rate3.text = "일치율 " + result.toString() + "%"
-                        binding.ratekeyword.text = result.toString() + "%"
-                    }
-                    //if (result != null) {
-                    if (result != null) {
-                        if (result > 50 ) {
-                            binding.rate3.background =
-                                ContextCompat.getDrawable(this@VideoPlayerActivity,
-                                    R.drawable.border_greenround
+                        if (result != null) {
+                            binding.rate3.text = "일치율 " + result.toString() + "%"
+                            binding.ratekeyword.text = result.toString() + "%"
+                        }
+                        //if (result != null) {
+                        if (result != null) {
+                            if (result > 50) {
+                                binding.rate3.background =
+                                    ContextCompat.getDrawable(
+                                        this@VideoPlayerActivity,
+                                        R.drawable.border_greenround
+                                    )
+                                binding.connection.text = "관련있는 영상"
+                                binding.connection.setTextColor(
+                                    ContextCompat.getColor(
+                                        applicationContext!!,
+                                        R.color.green
+                                    )
                                 )
-                            binding.connection.text = "관련있는 영상"
-                            binding.connection.setTextColor(ContextCompat.getColor(applicationContext!!, R.color.green))
+                            } else {
+                                binding.rate3.background =
+                                    ContextCompat.getDrawable(
+                                        this@VideoPlayerActivity,
+                                        R.drawable.border_redround
+                                    )
+                                binding.connection.text = "관련없는 영상"
+                                binding.connection.setTextColor(
+                                    ContextCompat.getColor(
+                                        applicationContext!!,
+                                        R.color.red
+                                    )
+                                )
+                            }
+
                         }
-                        else {
-                            binding.rate3.background =
-                                ContextCompat.getDrawable(this@VideoPlayerActivity, R.drawable.border_redround)
-                            binding.connection.text = "관련없는 영상"
-                            binding.connection.setTextColor(ContextCompat.getColor(applicationContext!!, R.color.red))
-                        }
+                        //}
 
                     }
-                    //}
-
                 }
                 else{
                     Log.v("rate", "retrofit 실패!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")

@@ -95,10 +95,12 @@ interface NetworkService {
         @Query("key") key:String,
         @Query("q") search_query : String,
         @Query("type") returnType: String,
-        @Query("part") returnData : String
+        @Query("part") returnData : String,
+        @Query("order") order : String
     ): Call<SearchListResponse>
 }
 
+//videoID로 불러오기 시도
 interface VideoIDlist {
     @GET("youtube/v3/videos")
     fun getvideoList(
