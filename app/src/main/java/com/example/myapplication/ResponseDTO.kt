@@ -41,5 +41,15 @@ data class bookmarkDTO(
     @SerializedName("useremail")
     var useremail: String,
     @SerializedName("videoid")
-    var videoid: String
+    var videoid: String,
+    @SerializedName("title")
+    var title: String
+    )
+
+// 북마크 get
+data class userBMDTO(
+    @SerializedName("videoid")
+    val videoid : String,
+    @SerializedName("title")
+    val title : String
 )

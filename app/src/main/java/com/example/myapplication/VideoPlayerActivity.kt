@@ -183,7 +183,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
             //북마크 클릭시 videoId 서버 전송
             if (i == false){
                 binding.btnBook.setImageResource(R.drawable.bookmark_fill)
-                RetrofitClient.retrofitService.bmvideoData(email.toString(),videoId)
+                RetrofitClient.retrofitService.bmvideoData(email.toString(),videoId,title)
                     .enqueue(object : Callback<bookmarkDTO> {
                         override fun onResponse(
                             call: Call<bookmarkDTO>,
@@ -193,6 +193,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                                 try {
                                     val result = response.body().toString()
                                     Log.v("videoid_bookmark", result)
+                                    Log.v("videoid_bookmark", title)
 
                                 } catch (e: IOException) {
                                     e.printStackTrace()
@@ -212,7 +213,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                 Toast.makeText(this, "북마크 저장", Toast.LENGTH_LONG).show()
             }else {
                 binding.btnBook.setImageResource(R.drawable.bookmark_empty)
-                RetrofitClient.retrofitService.bmvideoData(email.toString(),videoId)
+                RetrofitClient.retrofitService.bmvideoData(email.toString(),videoId,title)
                     .enqueue(object : Callback<bookmarkDTO> {
                         override fun onResponse(
                             call: Call<bookmarkDTO>,

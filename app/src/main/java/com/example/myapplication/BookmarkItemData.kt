@@ -1,5 +1,5 @@
 package com.example.myapplication
 
 data class BookmarkItemData (
-    var title: String?,
-    var thumb: String?)
+    var id : String?,
+    var title: String?)

@@ -61,7 +61,7 @@ class HomeFragment: Fragment()  {
             override fun onResponse(call: Call<List<useridDTO>>, response: Response<List<useridDTO>>) {
                 if (response.isSuccessful) {
 
-                    val id = response.body()?.get(0)?.user_id // DB에서 userid 가져오기
+                    //val id = response.body()?.get(0)?.user_id // DB에서 userid 가져오기
                     var name = email?.split('@')
                     binding.text1.text = "안녕하세요 " + (name?.get(0)) + "님! "
 

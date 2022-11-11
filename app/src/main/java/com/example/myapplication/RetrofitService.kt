@@ -37,7 +37,8 @@ interface RetrofitService{
     @POST("BMvideoid")
     fun bmvideoData(
         @Field("useremail") useremail : String,
-        @Field("videoid") videoid : String
+        @Field("videoid") videoid : String,
+        @Field("title") title : String
     ) : Call<bookmarkDTO>
 
     //검색어 get 테스트
@@ -56,6 +57,9 @@ interface RetrofitService{
     @GET("/srch-rate")
     fun rateResult(@Query("srch_word") srch_word:String, @Query("video_id") video_id:String): Call<List<SrchRateDTO>>
 
+    //북마크 get 이메일값 같이 전달
+    @GET("/BMvideoid")
+    fun BMvideoidget(@Query("email") email:String) : Call<List<userBMDTO>>
 
     //user post 테스트
     @FormUrlEncoded
