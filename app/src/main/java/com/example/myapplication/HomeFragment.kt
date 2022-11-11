@@ -44,6 +44,7 @@ class HomeFragment: Fragment()  {
 
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -127,6 +128,7 @@ class HomeFragment: Fragment()  {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 //list_recent.clear()
                 // db 데이터를 가져와서 그 중 썸네일 이미지를 recyclerview에 표시
+
 
                 for (dataSnapshot1 in dataSnapshot.children) {
                     val item: VideoItem? = dataSnapshot1.getValue(VideoItem::class.java)

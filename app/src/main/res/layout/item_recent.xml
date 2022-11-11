@@ -35,11 +35,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:text="20%"
+                android:text="28%"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp"
                 android:padding="5dp"
-                android:background="@color/point"
+                android:background="@color/red"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -57,7 +57,7 @@
             android:id="@+id/keyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="한소희"
+            android:text="설현 인터뷰"
             android:textColor="#FFFFFF"
             android:textSize="14dp" />
     </LinearLayout>

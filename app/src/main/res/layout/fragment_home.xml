@@ -67,6 +67,18 @@
 
         </LinearLayout>
 
+        <!-- 공백 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            ></LinearLayout>
+
+
+        <!-- 공백 -->
+
+
+
 
         <!-- 최근 시청영상, 선호 카테고리 영상 : 데이터 있을때 visible할 것 -->
         <LinearLayout
@@ -103,10 +115,11 @@
                     android:layout_width="wrap_content"
                     android:background="@drawable/border_round"
                     android:layout_height="wrap_content"
-                    android:text="#어그로"
+                    android:text="#설현"
                     android:textColor="#FFFFFF"
                     android:textSize="14dp" />
 
+                <!--
                 <TextView
                     android:id="@+id/hashtag2"
                     android:layout_marginLeft="10dp"
@@ -145,6 +158,8 @@
                     android:text="#한소희"
                     android:textColor="#FFFFFF"
                     android:textSize="14dp" />
+                -->
+
 
             </LinearLayout>
 
@@ -182,7 +197,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/border_round"
                     android:padding="5dp"
-                    android:text="#한소희"
+                    android:text="#Noggro"
                     android:textColor="#FFFFFF"
                     android:textSize="14dp" />
             </LinearLayout>

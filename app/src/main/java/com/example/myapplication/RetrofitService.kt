@@ -100,7 +100,8 @@ interface NetworkService {
         @Query("q") search_query : String,
         @Query("type") returnType: String,
         @Query("part") returnData : String,
-        @Query("order") order : String
+        @Query("order") order : String,
+        @Query("videoDuration") videoDuration: String
     ): Call<SearchListResponse>
 }
 

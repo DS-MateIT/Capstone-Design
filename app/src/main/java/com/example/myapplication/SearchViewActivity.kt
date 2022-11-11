@@ -157,7 +157,8 @@ class SearchViewActivity : AppCompatActivity() {
             query.toString(),
             "video",
             "snippet",
-            "relevance"
+            "relevance",
+            "medium"
         )
 
         call?.enqueue(object : Callback<SearchListResponse> {
@@ -269,7 +270,8 @@ class SearchViewActivity : AppCompatActivity() {
                     query.toString(),
                     "video",
                     "snippet",
-                    "relevance"
+                    "relevance",
+                    "medium"
                 )
 
                 call?.enqueue(object : Callback<SearchListResponse> {

@@ -5,7 +5,9 @@
       <map>
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable-v24/border_greenround.xml" value="0.197" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable/border_redround.xml" value="0.197" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/fragment_home.xml" value="0.15534420289855072" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/activity_main.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/bookmark_main.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/fragment_home.xml" value="0.109375" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_bookmark.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_favorite.xml" value="0.12335359675785208" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_play.xml" value="0.23802083333333332" />
