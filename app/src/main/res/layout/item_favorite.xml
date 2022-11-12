@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/favoriteVideo"
+        android:id="@+id/fav_Thumbnail"
         android:layout_width="220dp"
         android:layout_height="132dp" />
 

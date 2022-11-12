@@ -74,9 +74,10 @@ open class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, SearchViewActivity::class.java)
                 intent.putExtra("query", "$query")
 
-                // MainActivity -> VideoPlayerActivity 검색어 보내기 //상세페이지 검색어 띄우는 용
-                val intent2 = Intent(this@MainActivity, VideoPlayerActivity::class.java)
-                intent2.putExtra("query", "$query")
+                // MainActivity -> VideoPlayerActivity 검색어 보내기 //상세 페이지용
+                val srchIntent = Intent(this@MainActivity, VideoPlayerActivity::class.java)
+                srchIntent.putExtra("query", "$query")
+
 
                 //query 최근 검색어 post
                 RetrofitClient.retrofitService.srchData(query).enqueue(object: Callback<srchDTO> {

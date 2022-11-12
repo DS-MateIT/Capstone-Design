@@ -73,10 +73,13 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
 
         binding = SearchPlayBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
-        val intent2 = intent
-        //srchtext.text = intent2.getStringExtra("query") //검색어 띄우기
-        srchtext.text = "아가씨 리뷰" //임시 텍스트
+
+        val srchIntent = intent
+        binding.srchtext.text = srchIntent.getStringExtra("query").toString()//검색어 띄우기
+
+        Log.d("srchIntent","${srchtext}")
+        Log.d("srchIntent",srchtext.toString())
+        //srchtext.text = "아가씨 리뷰" //임시 텍스트
         
         
         
@@ -85,7 +88,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         videoPlayerView.initialize(getString(R.string.youtube_key), this@VideoPlayerActivity)!!
 
         val title = intent.getStringExtra("title").toString()
-        videoTitleTextView.setText(title);
+        videoTitleTextView.setText(title)
 
         //sendReq()
         getresult()
@@ -93,7 +96,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
         var user = auth.currentUser
         var email = user?.email
-        var i = false
+        var i = false //북마크
 
         val videoId = intent.getStringExtra("id").toString()
 

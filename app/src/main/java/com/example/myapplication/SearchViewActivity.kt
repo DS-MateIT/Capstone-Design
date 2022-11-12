@@ -151,6 +151,7 @@ class SearchViewActivity : AppCompatActivity() {
         val query = intent.getStringExtra("query")
 
 
+
         //homeFragment 검색결과 가져오기
         var call: Call<SearchListResponse> = MyApplication.networkService.getList(
             getString(R.string.youtube_key),
@@ -236,10 +237,6 @@ class SearchViewActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
 
-                // SearchViewActivity -> VideoPlayerActivity 검색어 보내기 //상세페이지 검색어 띄우는 용
-                val intent2 = Intent(this@SearchViewActivity, VideoPlayerActivity::class.java)
-                intent2.putExtra("query", "$query")
-
                 //query 최근 검색어 post
                 RetrofitClient.retrofitService.srchData(query).enqueue(object: Callback<srchDTO> {
                     override fun onResponse(call: Call<srchDTO>, response: Response<srchDTO>) {
@@ -291,7 +288,6 @@ class SearchViewActivity : AppCompatActivity() {
                         Log.d("mobileApp", "error..")
                     }
                 })
-
 
 
                 return true

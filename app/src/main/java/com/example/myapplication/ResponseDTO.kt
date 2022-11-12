@@ -36,7 +36,7 @@ data class useridDTO(
     @SerializedName("user_id")
     val user_id : Int
 )
-// 북마크
+// 북마크 post
 data class bookmarkDTO(
     @SerializedName("useremail")
     var useremail: String,
@@ -49,6 +49,24 @@ data class bookmarkDTO(
 // 북마크 get
 data class userBMDTO(
     @SerializedName("videoid")
+    val videoid : String,
+    @SerializedName("title")
+    val title : String
+)
+
+
+// 최근 시청한 영상
+data class userRecentDTO(
+    @SerializedName("video_id")
+    val videoid : String,
+    @SerializedName("title")
+    val title : String
+)
+
+
+// 선호 영상
+data class userFavoriteDTO(
+    @SerializedName("video_id")
     val videoid : String,
     @SerializedName("title")
     val title : String

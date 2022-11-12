@@ -29,7 +29,8 @@ interface RetrofitService{
     @POST("videoid")
     fun videoData(
         @Field("email") email: String,
-        @Field("videoId") videoId : String
+        @Field("videoId") videoId : String,
+        @Field("title") title : String
     ) : Call<videoIdDTO>
 
     //북마크 - 유저 이메일과  videoid post
@@ -64,6 +65,15 @@ interface RetrofitService{
     // 파이차트 get 이메일값 같이 전달
     @GET("/PieChart")
     fun PieChartget(@Query("email") email:String) : Call<List<PieChartDTO>>
+
+
+    //최근 시청한 영상 get 이메일값 같이 전달
+    @GET("/Recentvideoid")
+    fun Recentvideoid(@Query("email") email:String) : Call<List<userRecentDTO>>
+
+    //선호카테고리 get 이메일값 같이 전달
+    @GET("/Favoritevideoid")
+    fun Favoritevideoid(@Query("email") email:String) : Call<List<userFavoriteDTO>>
 
     //user post 테스트
     @FormUrlEncoded

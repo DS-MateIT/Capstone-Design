@@ -20,7 +20,10 @@ data class srchDTO(
 
 data class videoIdDTO(
     @SerializedName("video_id")
-    var videoId: String
+    var videoId: String,
+    @SerializedName("title")
+    var title: String
+
 )
 
 //user 정보 테스트

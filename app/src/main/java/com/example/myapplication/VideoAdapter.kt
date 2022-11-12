@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -299,15 +300,17 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
             intent.putExtra("title", datas!![position].snippet!!.title.toString())
             intent.putExtra("id", datas!![position].id!!.videoId.toString())
 
+            val title = datas!![position].snippet!!.title.toString()
             val videoId = datas!![position].id!!.videoId.toString()
 
             //videoID값 전송 - 최근 시청한 영상에 쓰일것임 아마도
-            RetrofitClient.retrofitService.videoData(email!!,videoId).enqueue(object : Callback<videoIdDTO>{
+            RetrofitClient.retrofitService.videoData(email!!,videoId,title).enqueue(object : Callback<videoIdDTO>{
                 override fun onResponse(call: Call<videoIdDTO>, response: Response<videoIdDTO>) {
                     if (response.isSuccessful) {
                         try {
                             val result = response.body().toString()
                             Log.v("videoid_watch", result)
+                            Log.v("videoid_watch", title)
 
                         } catch (e: IOException) {
                             e.printStackTrace()
@@ -323,6 +326,7 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
                 }
 
             })
+
 
 
             context.startActivity(intent)
