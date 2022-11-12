@@ -53,3 +53,11 @@ data class userBMDTO(
     @SerializedName("title")
     val title : String
 )
+
+// 파이차트 get
+data class PieChartDTO(
+    @SerializedName("stt_word")
+    val stt_word : String,
+    @SerializedName("stt_word_count")
+    val stt_word_count : Int
+)

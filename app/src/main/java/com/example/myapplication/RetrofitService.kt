@@ -61,6 +61,10 @@ interface RetrofitService{
     @GET("/BMvideoid")
     fun BMvideoidget(@Query("email") email:String) : Call<List<userBMDTO>>
 
+    // 파이차트 get 이메일값 같이 전달
+    @GET("/PieChart")
+    fun PieChartget(@Query("email") email:String) : Call<List<PieChartDTO>>
+
     //user post 테스트
     @FormUrlEncoded
     @POST("user")

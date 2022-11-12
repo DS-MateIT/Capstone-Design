@@ -19,4 +19,16 @@
     <color name="green">#5BAF5F</color>
     <color name="red">#FF5959</color>
 
+    <color name="color1">#99CFDF</color>
+    <color name="color2">#67B7DC</color>
+    <color name="color3">#6794DC</color>
+    <color name="color4">#6771DC</color>
+    <color name="color5">#8067DC</color>
+    <color name="color6">#A367DC</color>
+    <color name="color7">#B06DBC</color>
+    <color name="color8">#C767DC</color>
+    <color name="color9">#E66BD8</color>
+    <color name="color10">#FBB9F3</color>
+
+
 </resources>

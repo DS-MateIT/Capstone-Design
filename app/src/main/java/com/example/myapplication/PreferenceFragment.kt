@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,24 +9,29 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
-import com.amazonaws.auth.CognitoCachingCredentialsProvider
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferNetworkLossHandler
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility
-import com.amazonaws.regions.Region
-import com.amazonaws.regions.Regions
-import com.amazonaws.services.s3.AmazonS3Client
 import com.example.myapplication.databinding.PreferenceMainBinding
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.preference_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 import java.io.IOException
 import java.lang.String
+import kotlin.Int
+import kotlin.Throwable
+import kotlin.apply
+import kotlin.toString
+
 
 class PreferenceFragment: Fragment() {
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -166,8 +170,8 @@ class PreferenceFragment: Fragment() {
 
             })
 
-
-            //S3 파이차트 불러오기
+/*
+* //S3 파이차트 불러오기
             // Cognito 샘플 코드. CredentialsProvider 객체 생성
             val credentialsProvider = CognitoCachingCredentialsProvider(
                 context,
@@ -216,13 +220,88 @@ class PreferenceFragment: Fragment() {
                     Log.d("AWS", "DOWNLOAD ERROR - - ID: $id - - EX: ${ex.message.toString()}")
                 }
             })
-        //파이차트 끝
+        //파이차트 끝*/
 
 
+        // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
+        var user = auth.currentUser
+        var email = user?.email
 
+        val colors = java.util.ArrayList<Int>()
+        colors.add(resources.getColor(R.color.color1))
+        colors.add(resources.getColor(R.color.color2))
+        colors.add(resources.getColor(R.color.color3))
+        colors.add(resources.getColor(R.color.color4))
+        colors.add(resources.getColor(R.color.color5))
+        colors.add(resources.getColor(R.color.color6))
+        colors.add(resources.getColor(R.color.color7))
+        colors.add(resources.getColor(R.color.color8))
+        colors.add(resources.getColor(R.color.color9))
+        colors.add(resources.getColor(R.color.color10))
 
+        // 파이차트 테스트 시작
+        RetrofitClient.retrofitService.PieChartget(email.toString()).enqueue(object :
+            Callback<List<PieChartDTO>> {
+            override fun onResponse(call: Call<List<PieChartDTO>>, response: Response<List<PieChartDTO>>) {
+                if (response.isSuccessful) {
 
-        return binding.root
+                    var values:ArrayList<PieEntry> = ArrayList()
+
+                    for (i in 0 until response.body()!!.size) {
+                        val word = response.body()?.get(i)?.stt_word
+                        val count = response.body()?.get(i)?.stt_word_count.toString()
+                        values.add(PieEntry(count!!.toFloat(),word.toString()))
+                    }
+
+                    var dataset = PieDataSet(values, "")
+                    var data = PieData(dataset)
+                    binding.pie.data = data
+
+                    dataset.xValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+                    dataset.yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+
+                    dataset.setColors(colors)
+                    //dataset.setColors(*ColorTemplate.JOYFUL_COLORS)  // 컬러 템플릿 이용 = 알록달록해요!
+                    dataset.valueTextSize = 15f
+                    dataset.valueTextColor = resources.getColor(R.color.text)
+                    dataset.setValueFormatter(PercentFormatter()) // 백분율 소수점 한자리
+
+                    /*
+                    * // legend 설정 하나 밖에 안나와서 무쓸모,,,
+                    *                     val legend: Legend = binding.pie.getLegend()
+                    legend.form = Legend.LegendForm.CIRCLE
+                    legend.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
+                    legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+                    legend.orientation = Legend.LegendOrientation.HORIZONTAL
+                    legend.setDrawInside(false)
+                    legend.textColor = resources.getColor(R.color.text)*/
+
+                    binding.pie.setCenterTextColor(R.color.main_theme)
+                    binding.pie.description.isEnabled = false
+                    binding.pie.setUsePercentValues(true)  // 백분율 소수점 두자리까지
+                    binding.pie.centerTextRadiusPercent = 0f
+                    binding.pie.isDrawHoleEnabled = true
+                    binding.pie.legend.isEnabled = false
+                    binding.pie.setEntryLabelColor(resources.getColor(R.color.text))
+                    binding.pie.setEntryLabelTextSize(15f)
+                    binding.pie.setHoleColor(resources.getColor(R.color.main_theme))  // 가운데 도넛색 배경색으로 지정
+                    binding.pie.animateY(2000, Easing.EaseInOutCubic)
+
+                    try {
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                } else {
+                    Log.v("Pie_get", "error = " + String.valueOf(response.code()))
+                }
+            }
+
+            override fun onFailure(call: Call<List<PieChartDTO>>, t: Throwable) {
+                Log.d("Pie_get","get"+t.toString())
+            }
+        })
+
+       return binding.root
     }
 
 }

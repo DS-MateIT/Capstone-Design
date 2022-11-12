@@ -135,11 +135,11 @@ class HomeFragment: Fragment()  {
                     if (item != null) {
                         list_recent.add(item)
                     }
-                    val adapter1 = RecentItemAdapter(requireContext(), list_recent)
-                    rv_recent.adapter = adapter1
+                    //val adapter1 = RecentItemAdapter(requireContext(), list_recent)
+                    //rv_recent.adapter = adapter1
 
 
-                    rv_favor.adapter = adapter1
+                    //rv_favor.adapter = adapter1
                 }
 
             }

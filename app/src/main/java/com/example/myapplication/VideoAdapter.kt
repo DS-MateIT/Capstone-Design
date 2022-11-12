@@ -148,7 +148,7 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
                         val result : Task<Text> = recognizer.process(image)
                             .addOnSuccessListener { visionText ->
                                 val mlkit_Text : String = visionText.text
-                                binding.views.text = mlkit_Text
+                                //binding.views.text = mlkit_Text
 
 
                                 //일치율 임의 테스트
