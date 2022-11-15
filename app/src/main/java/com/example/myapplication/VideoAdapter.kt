@@ -116,7 +116,7 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
         val binding = (holder as MyViewHolder).binding
         val model = datas!![position].snippet!!
 
-        //binding.dateTextView.text = model.publishedAt
+        binding.views.text = model.publishedAt!!.substring(0 until 10)
         binding.searchVideoTitle.text = model.title
         //binding.contentsTextView.text = model.description
 
@@ -298,10 +298,12 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
             val intent = Intent(context, VideoPlayerActivity::class.java)
             intent.putExtra("title", datas!![position].snippet!!.title.toString())
             intent.putExtra("id", datas!![position].id!!.videoId.toString())
+            intent.putExtra("publishedAt", datas!![position].snippet!!.publishedAt.toString().substring(0 until 10))
+
 
             val title = datas!![position].snippet!!.title.toString()
             val videoId = datas!![position].id!!.videoId.toString()
-
+            val publishedAt = datas!![position].snippet!!.publishedAt.toString()
 
             //검색어 보내기 인텐트 테스트
             intent.putExtra("srchquery", "$srchquery")

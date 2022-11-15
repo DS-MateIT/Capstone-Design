@@ -89,6 +89,9 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         val title = intent.getStringExtra("title").toString()
         videoTitleTextView.setText(title)
 
+        val publishedAt = intent.getStringExtra("publishedAt").toString()
+        views.setText(publishedAt)
+
         //sendReq()
         getresult()
 
@@ -103,7 +106,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
 
         // 검색어 get, 연관검색어
         // datas!![position].id!!.videoId.toString()
-        RetrofitClient.retrofitService.rateResult("아가씨 리뷰", videoId).enqueue(object : Callback<List<SrchRateDTO>> {
+        RetrofitClient.retrofitService.rateResult("$srchtext", videoId).enqueue(object : Callback<List<SrchRateDTO>> {
             override fun onResponse(
                 call: Call<List<SrchRateDTO>> ,
                 response: Response<List<SrchRateDTO>>

@@ -66,49 +66,61 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="20dp"
-            android:text="조회수"
-            android:textColor="#FFFFFF"
-            android:textSize="11dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="453,333"
-            android:textColor="#FFFFFF"
-            android:textSize="11dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="회"
-            android:textColor="#FFFFFF"
-            android:textSize="11dp" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="20dp"
-            android:text="2021.2.9"
-            android:textColor="#FFFFFF"
-            android:textSize="11dp" />
+            android:layout_width="320dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="20dp"
+                android:text="게시일 "
+                android:textColor="#FFFFFF"
+                android:textSize="11dp" />
+            <TextView
+                android:id="@+id/views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="453,333"
+                android:textColor="#FFFFFF"
+                android:textSize="11dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="30dp"
+                android:text="조회수 "
+                android:textColor="#FFFFFF"
+                android:textSize="11dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="453,333회"
+                android:textColor="#FFFFFF"
+                android:textSize="11dp" />
+
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/rate3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="170dp"
             android:layout_marginTop="0dp"
-            android:background="@drawable/border_greenround"
-            android:text="일치율 70%"
+            android:background="@drawable/border_greyround"
+            android:text="일치율 50%"
             android:textColor="#FFFFFF"
             android:textSize="11dp"
             android:textStyle="bold" />
@@ -166,7 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="27dp"
-            android:text="70%"
+            android:text="50%"
             android:textColor="#FFFFFF"
             android:textSize="17dp"
             android:textStyle="bold" />
@@ -192,9 +204,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="관련있는 영상"
+            android:text="적당한 영상"
             android:textStyle="bold"
-            android:textColor="#5BAF5F"
+            android:textColor="#959595"
             android:textSize="17dp" />
         <TextView
             android:layout_width="match_parent"

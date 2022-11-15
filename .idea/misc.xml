@@ -4,15 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable-v24/border_greenround.xml" value="0.197" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable-v24/border_greyround.xml" value="0.1755" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable/border_grround.xml" value="0.1755" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable/border_redround.xml" value="0.197" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/activity_main.xml" value="0.26506024096385544" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/fragment_home.xml" value="0.15534420289855072" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/bookmark_main.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_bookmark.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_favorite.xml" value="0.152" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_play.xml" value="0.23802083333333332" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_recent.xml" value="0.15989583333333332" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_recent.xml" value="0.1" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_search.xml" value="0.1514052583862194" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/login_page.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/preference_main.xml" value="0.1514052583862194" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/search_filter.xml" value="0.176" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/search_play.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/searching.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/setting_aboutus.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/setting_main.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/toolbar_search.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/video_player.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/DSNoggro/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1035" />
@@ -90,8 +99,7 @@
         <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/fragment_home.xml" value="0.12" />
         <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/home_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_bookmark.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_favorite.xml" value="0.1" />
-        <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_recent.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_recent.xml" value="0.1" />
         <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_search.xml" value="0.10009057971014493" />
         <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/login_page.xml" value="0.1" />
         <entry key="..\:/Users/ertbn/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/preference_main.xml" value="0.16666666666666666" />
