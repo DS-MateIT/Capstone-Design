@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -20,6 +21,7 @@ private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
 class RecentItemAdapter(val context: Context) : RecyclerView.Adapter<RecHolder>() {
     var rec_listData = mutableListOf<RecentItemData>()
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecHolder {
@@ -66,6 +68,8 @@ class RecHolder(val binding: ItemRecentBinding) : RecyclerView.ViewHolder(bindin
             .centerCrop()
             .into(binding.recentThumbnail)
     }
+
+
 }
 
 

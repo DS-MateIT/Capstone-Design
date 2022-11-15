@@ -4,16 +4,15 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Adapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.android.youtube.player.YouTubeStandalonePlayer
 import com.google.firebase.auth.FirebaseAuth
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.item_recent.*
+import kotlinx.android.synthetic.main.item_recent.view.*
 import kotlinx.android.synthetic.main.search_play.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,6 +62,15 @@ class HomeFragment: Fragment()  {
         binding.itemFavorite.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         FAVadapter.notifyDataSetChanged()
         binding.itemFavorite.invalidate()
+
+        /*
+        binding.itemRecent!!.likebutton.setOnClickListener {
+            Toast.makeText(context, "영상을 추천합니다!", Toast.LENGTH_SHORT).show();
+        }
+
+         */
+
+
 
 
         // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
