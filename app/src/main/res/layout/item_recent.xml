@@ -23,44 +23,13 @@
                 android:id="@+id/recentTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="15dp"
                 android:text="영상 제목"
                 android:maxLines="1"
-                android:ems="8"
+                android:ems="11"
                 android:ellipsize="end"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/rate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="28%"
-                android:textColor="#FFFFFF"
-                android:textSize="16dp"
-                android:padding="5dp"
-                android:background="@color/red"
-                android:textStyle="bold" />
         </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="검색어 : "
-            android:textColor="#FFFFFF"
-            android:textSize="14dp" />
-        <TextView
-            android:id="@+id/keyword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="설현 인터뷰"
-            android:textColor="#FFFFFF"
-            android:textSize="14dp" />
-    </LinearLayout>
-
-
 </LinearLayout>
