@@ -38,6 +38,8 @@ class RecentItemAdapter(val context: Context) : RecyclerView.Adapter<RecHolder>(
             val intent = Intent(context, VideoPlayerActivity::class.java)
             intent.putExtra("id",Recentlist.id)
             intent.putExtra("title", Recentlist.title)
+            intent.putExtra("publishedAt", "2019-11-16")
+            intent.putExtra("srchquery","검색결과가 아닙니다.")
 
 
             context.startActivity(intent)
