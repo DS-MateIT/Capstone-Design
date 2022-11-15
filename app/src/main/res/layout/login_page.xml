@@ -36,6 +36,7 @@
         android:layout_marginTop="260dp"
         android:background="@drawable/border_round"
         android:hint="비밀번호"
+        android:inputType="textPassword"
         android:textColor="#979797"
         android:textColorHint="#979797" />
 
