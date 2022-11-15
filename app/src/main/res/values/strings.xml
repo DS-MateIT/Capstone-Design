@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NOGGRO</string>
+    <string name="app_name">Noggro</string>
     <string name="id">snowww</string>
     <string name="age">성인</string>
 
@@ -28,5 +28,5 @@
     <string name="cancel">취소</string>
 
     <string name="firebase_web_client_id">769232579715-psplo8qrd6o2h0qfhsu81spsdfujgqgd.apps.googleusercontent.com</string>
-    <string name="youtube_key">AIzaSyBwDt0NvNliavwfyYm2kSJCNt10Rc0-bxk </string>
+    <string name="youtube_key">AIzaSyCWRcorlwblKycd5jkSXk3SSzwNYdWRBlU</string>
 </resources>

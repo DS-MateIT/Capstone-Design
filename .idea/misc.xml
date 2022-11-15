@@ -4,28 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable-v24/border_greenround.xml" value="0.197" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable-v24/border_greyround.xml" value="0.1755" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable-v24/custom_ripple_effect.xml" value="0.1" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable/border_grayrect.xml" value="0.1" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable/border_grround.xml" value="0.1755" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable/border_redround.xml" value="0.197" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable/border_round.xml" value="0.1" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/drawable/login_btn.xml" value="0.1" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/activity_main.xml" value="0.26506024096385544" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/bookmark_main.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/fragment_home.xml" value="0.16" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/fragment_home.xml" value="0.15534420289855072" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_bookmark.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_favorite.xml" value="0.152" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_play.xml" value="0.23802083333333332" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_recent.xml" value="0.2" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_search.xml" value="0.1514052583862194" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/login_page.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/preference_main.xml" value="0.1514052583862194" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/search_filter.xml" value="0.176" />
+        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/item_recent.xml" value="0.15989583333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/search_play.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/searching.xml" value="0.23802083333333332" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/setting_aboutus.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/setting_main.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/toolbar_search.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/Capstone-Design/app/src/main/res/layout/video_player.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/codms/Documents/AndroidStudioProjects/DSNoggro/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1035" />
@@ -158,6 +145,8 @@
         <entry key="..\:/Users/ing06/AndroidStudioProjects/MyApplication/app/src/main/res/layout/setting_password_change.xml" value="0.264" />
         <entry key="..\:/Users/ing06/AndroidStudioProjects/MyApplication/app/src/main/res/layout/setting_trigger_add.xml" value="0.176" />
         <entry key="..\:/Users/ing06/AndroidStudioProjects/MyApplication/app/src/main/res/layout/setting_trigger_main.xml" value="0.264" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/drawable-v24/border_greyround.xml" value="0.182" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/drawable/border_grround.xml" value="0.182" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/bookmark_main.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/dialog.xml" value="0.14764492753623187" />
@@ -165,16 +154,18 @@
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/item_bookmark.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/item_favorite.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/item_play.xml" value="0.14764492753623187" />
-        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/item_recent.xml" value="0.14764492753623187" />
-        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/item_search.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/item_recent.xml" value="0.2" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/item_search.xml" value="0.264" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/login_page.xml" value="0.17798913043478262" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/preference_main.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/search_filter.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/search_play.xml" value="0.14764492753623187" />
-        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/setting_aboutus.xml" value="0.14764492753623187" />
-        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/setting_main.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/searching.xml" value="0.19114583333333332" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/setting_aboutus.xml" value="0.2" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/setting_main.xml" value="0.1" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/setting_trigger_add.xml" value="0.14764492753623187" />
-        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/setting_trigger_main.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/setting_trigger_main.xml" value="0.41576506955177744" />
+        <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/signup_page.xml" value="0.18020833333333333" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/toolbar_search.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/layout/video_player.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/leesw/Desktop/wiscom1116/Capstone-Design/app/src/main/res/menu/bottom_navigation.xml" value="0.10989583333333333" />

@@ -35,7 +35,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="56dp"
         android:layout_marginRight="20dp"
@@ -49,24 +49,24 @@
             android:id="@+id/trash_can"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="9dp"
+            android:layout_gravity="center"
             android:src="@drawable/logo2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="9dp"
-            android:text="본 어플리케이션은 덕성여자대학교
-            MateIT팀이 만든 어플리케이션으로 한이음 ICT멘토링과 연계하여 만들었습니다." />
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="2dp"
+
+            android:text="본 어플리케이션은 덕성여자대학교 MateIT팀이 만든 어플리케이션으로 한이음 ICT멘토링과 연계하여 만들었습니다." />
 
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="56dp"
         android:layout_marginRight="20dp"
@@ -91,6 +91,23 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="본 어플리케이션과 연관된 문의사항은 아래 연락처로      문의바랍니다."
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="개발자 : "
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:text="MateIT - 이서우 김해인 채은비 조미정 "
             android:textSize="15dp" />
 
         <TextView
