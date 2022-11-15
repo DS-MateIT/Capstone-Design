@@ -62,7 +62,7 @@ class HomeFragment: Fragment()  {
         binding.itemFavorite.adapter = FAVadapter
         binding.itemFavorite.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         FAVadapter.notifyDataSetChanged()
-        binding.itemRecent.invalidate()
+        binding.itemFavorite.invalidate()
 
 
         // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
