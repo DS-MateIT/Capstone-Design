@@ -5,14 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -105,6 +102,8 @@ class VideoAdapter(var context: Context, var videoItems: ArrayList<VideoItem>) :
 class MyViewHolder(val binding: ItemSearchBinding): RecyclerView.ViewHolder(binding.root)
 class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val word: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    val srchqueryBundle: Bundle? = (context as Activity).intent.extras
+    val srchquery = srchqueryBundle!!.getString("srchquery")
 
     override fun getItemCount(): Int {
         return datas?.size ?: 0
@@ -302,6 +301,12 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
 
             val title = datas!![position].snippet!!.title.toString()
             val videoId = datas!![position].id!!.videoId.toString()
+
+
+            //검색어 보내기 인텐트 테스트
+            intent.putExtra("srchquery", "$srchquery")
+
+
 
             //videoID값 전송 - 최근 시청한 영상에 쓰일것임 아마도
             RetrofitClient.retrofitService.videoData(email!!,videoId,title).enqueue(object : Callback<videoIdDTO>{

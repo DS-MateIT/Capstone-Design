@@ -1,11 +1,13 @@
 package com.example.myapplication
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.widget.CalendarView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -29,6 +31,7 @@ open class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val toolbar : Toolbar = findViewById(R.id.toolbar);
 
@@ -75,8 +78,9 @@ open class MainActivity : AppCompatActivity() {
                 intent.putExtra("query", "$query")
 
                 // MainActivity -> VideoPlayerActivity 검색어 보내기 //상세 페이지용
-                val srchIntent = Intent(this@MainActivity, VideoPlayerActivity::class.java)
-                srchIntent.putExtra("query", "$query")
+                //val srchIntent = Intent(this@MainActivity,MyAdapter::class.java)
+                intent.putExtra("srchquery", "$query")
+
 
 
                 //query 최근 검색어 post

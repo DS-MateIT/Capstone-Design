@@ -74,14 +74,13 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         binding = SearchPlayBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val srchIntent = intent
-        binding.srchtext.text = srchIntent.getStringExtra("query").toString()//검색어 띄우기
 
-        Log.d("srchIntent","${srchtext}")
-        Log.d("srchIntent",srchtext.toString())
+        //인텐트 테스트
+        val srchtext = intent.getStringExtra("srchquery").toString()
+        videoSrchtextTextView.setText(srchtext)
+
         //srchtext.text = "아가씨 리뷰" //임시 텍스트
-        
-        
+
         
         downloadWithTransferUtility() //S3 이미지 불러오는 함수 호출
 

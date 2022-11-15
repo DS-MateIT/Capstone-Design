@@ -4,10 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.databinding.ItemRecentBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.coroutines.coroutineContext
 
 
 private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -15,6 +20,7 @@ private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
 class RecentItemAdapter(val context: Context) : RecyclerView.Adapter<RecHolder>() {
     var rec_listData = mutableListOf<RecentItemData>()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecHolder {
         val binding = ItemRecentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -34,7 +40,7 @@ class RecentItemAdapter(val context: Context) : RecyclerView.Adapter<RecHolder>(
 
             context.startActivity(intent)
 
-            notifyItemChanged(position)
+            //notifyItemChanged(position)
         }
 
         var user = auth.currentUser
@@ -46,7 +52,6 @@ class RecentItemAdapter(val context: Context) : RecyclerView.Adapter<RecHolder>(
 
         }
 }
-
 
 
 class RecHolder(val binding: ItemRecentBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -61,8 +66,10 @@ class RecHolder(val binding: ItemRecentBinding) : RecyclerView.ViewHolder(bindin
             .centerCrop()
             .into(binding.recentThumbnail)
     }
-
 }
+
+
+
 
 
 

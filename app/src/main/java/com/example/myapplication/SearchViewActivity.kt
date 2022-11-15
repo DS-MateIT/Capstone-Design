@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.SearchFilterBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.search_play.*
 import retrofit2.*
 import java.io.IOException
 import java.util.concurrent.Executor
@@ -147,8 +148,10 @@ class SearchViewActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
 
+        //검색용
         val intent = intent
         val query = intent.getStringExtra("query")
+        Log.d("query","$query") //문자열 확인
 
 
 
@@ -237,6 +240,11 @@ class SearchViewActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
 
+                // SearchViewActivity -> VideoPlayerActivity 검색어 보내기 //상세 페이지용
+                val intent = Intent(this@SearchViewActivity, SearchViewActivity::class.java)
+                intent.putExtra("srchquery", "$query")
+
+
                 //query 최근 검색어 post
                 RetrofitClient.retrofitService.srchData(query).enqueue(object: Callback<srchDTO> {
                     override fun onResponse(call: Call<srchDTO>, response: Response<srchDTO>) {
@@ -289,7 +297,7 @@ class SearchViewActivity : AppCompatActivity() {
                     }
                 })
 
-
+                startActivity(intent)
                 return true
 
             }

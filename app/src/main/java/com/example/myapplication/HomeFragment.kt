@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Adapter
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.FragmentHomeBinding
@@ -27,6 +28,7 @@ class HomeFragment: Fragment()  {
     private val rec_data:MutableList<RecentItemData> = mutableListOf()
     private val fav_data:MutableList<FavoriteItemData> = mutableListOf()
 
+
     /*
     //테스트2 - 시연용 firebase 임시 데이터
     private lateinit var rv_recent: RecyclerView  // 최근 시청한 영상
@@ -47,16 +49,20 @@ class HomeFragment: Fragment()  {
 
         val RECadapter = RecentItemAdapter(requireContext())
         RECadapter.rec_listData = rec_data
+        RECadapter.rec_listData.clear()
         binding.itemRecent.adapter = RECadapter
         binding.itemRecent.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        RECadapter.notifyDataSetChanged()
+        binding.itemRecent.invalidate()
 
 
         val FAVadapter = FavoriteItemAdapter(requireContext())
         FAVadapter.fav_listData = fav_data
+        FAVadapter.fav_listData.clear()
         binding.itemFavorite.adapter = FAVadapter
         binding.itemFavorite.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-
-        //data.clear()
+        FAVadapter.notifyDataSetChanged()
+        binding.itemRecent.invalidate()
 
 
         // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
