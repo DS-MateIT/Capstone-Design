@@ -34,6 +34,7 @@
             android:id="@+id/srchwordLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
         </LinearLayout>
 
@@ -54,6 +55,7 @@
             android:id="@+id/srchcrawLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
         </LinearLayout>
 
@@ -63,6 +65,7 @@
             android:id="@+id/srchcrawLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
         </LinearLayout>
 
@@ -73,6 +76,7 @@
             android:id="@+id/srchcrawLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
         </LinearLayout>
 

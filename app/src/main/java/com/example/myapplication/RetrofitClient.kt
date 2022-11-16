@@ -32,7 +32,7 @@ object RetrofitClient { //singleton - 서버 호출이 필요할 때마다 객�
                 //.baseUrl("http://10.0.2.2:5000/") //에뮬레이터
                 //.baseUrl("http://172.20.15.41:5000")  // 서버 돌릴때마다 주소 맞는지 확인해야함
                 //.baseUrl("http://172.31.58.130:5000")
-                .baseUrl("http://192.168.123.107:5000/")
+                .baseUrl("http://192.168.123.107:5000/") //서우
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client) // Retrofit 객체에 OkHttpClient 적용

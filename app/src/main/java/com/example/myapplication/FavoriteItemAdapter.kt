@@ -35,6 +35,7 @@ class FavoriteItemAdapter(val context: Context) : RecyclerView.Adapter<FavHolder
             intent.putExtra("srchquery","검색결과가 아닙니다.")
 
 
+
             context.startActivity(intent)
 
             notifyItemChanged(position)

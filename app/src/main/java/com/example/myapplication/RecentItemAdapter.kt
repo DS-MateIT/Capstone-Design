@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.databinding.ItemRecentBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.item_recent.view.*
 import kotlin.coroutines.coroutineContext
 
 
@@ -26,12 +27,18 @@ class RecentItemAdapter(val context: Context) : RecyclerView.Adapter<RecHolder>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecHolder {
         val binding = ItemRecentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        binding.likebutton.setOnClickListener {
+            Toast.makeText(context, "영상을 추천합니다!", Toast.LENGTH_SHORT).show()
+        }
+
         return RecHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecHolder, position: Int) {
         val Recentlist = rec_listData[position]
         holder.setData(Recentlist)
+
 
         //id 값 VideoActivity로 전달
         holder.itemView.setOnClickListener {

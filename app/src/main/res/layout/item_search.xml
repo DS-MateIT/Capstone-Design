@@ -22,6 +22,8 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:layout_marginRight="15dp"
             android:text="(현재 유행하는 신종사기 3가지!!)현관에 이런 택배/우편 있으면 무조건 신고하세요! 모르면 바로 당합니다..."
             android:textColor="#FFFFFF"

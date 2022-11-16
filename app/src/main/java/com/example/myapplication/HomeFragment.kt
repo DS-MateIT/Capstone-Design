@@ -63,12 +63,6 @@ class HomeFragment: Fragment()  {
         FAVadapter.notifyDataSetChanged()
         binding.itemFavorite.invalidate()
 
-        /*
-        binding.itemRecent!!.likebutton.setOnClickListener {
-            Toast.makeText(context, "영상을 추천합니다!", Toast.LENGTH_SHORT).show();
-        }
-
-         */
 
 
 
