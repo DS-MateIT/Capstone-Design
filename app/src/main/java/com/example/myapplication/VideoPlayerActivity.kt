@@ -135,7 +135,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                         }
                         //if (result != null) {
                         if (result != null) {
-                            if (result > 50) {
+                            if (result > 35) {
                                 binding.rate3.background =
                                     ContextCompat.getDrawable(
                                         this@VideoPlayerActivity,

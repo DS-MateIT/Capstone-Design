@@ -243,7 +243,7 @@ class MyAdapter(val context: Context, val datas: ArrayList<SearchResult>?, val w
 
                         //if (result != null) {
                         if (result != null) {
-                            if (result > 50 )
+                            if (result > 35 )
                                 binding.rate2.background =
                                     ContextCompat.getDrawable(context, R.drawable.border_greenround)
 

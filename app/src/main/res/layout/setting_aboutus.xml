@@ -57,9 +57,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginRight="0dp"
 
-            android:text="본 어플리케이션은 덕성여자대학교 MateIT팀이 만든 어플리케이션으로 한이음 ICT멘토링과 연계하여 만들었습니다." />
+            android:text="본 어플리케이션은 덕성여대 MateIT팀이 만든 어플리케이션으로   한이음 ICT멘토링과 연계하여 만들었습니다." />
 
 
     </LinearLayout>
