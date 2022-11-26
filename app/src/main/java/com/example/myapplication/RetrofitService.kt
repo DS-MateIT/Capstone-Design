@@ -54,6 +54,10 @@ interface RetrofitService{
     @GET("/user")
     fun useridget2(@Query("email") email:String) : Call<List<useridDTO>>
 
+    /* user pwd 수정
+    @POST("/user-update")
+    fun updateUserPWD(@Field("email") email:String, @Field("userpwd") userpwd : String) : Call<List<useridDTO>> */
+
     // ! 일치율 !
     @GET("/srch-rate")
     fun rateResult(@Query("srch_word") srch_word:String, @Query("video_id") video_id:String): Call<List<SrchRateDTO>>

@@ -42,6 +42,7 @@ class LoginActivity: AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        moveMainPage(task.result?.user)     // 로그아웃 후 다시 로그인 하면 메인으로..
                         finish()
                     } else {
                         Toast.makeText(this, "로그인 실패.", Toast.LENGTH_SHORT).show()

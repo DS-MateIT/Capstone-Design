@@ -71,7 +71,8 @@ class RecHolder(val binding: ItemRecentBinding) : RecyclerView.ViewHolder(bindin
         val videoId = rec_listData.id
 
         // id값으로 썸네일 불러오기
-        val videoIdString = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg"
+        //val videoIdString = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg"
+        val videoIdString = "https://img.youtube.com/vi/" + videoId + "/sddefault.jpg"
         Glide.with(binding.root)
             .load(videoIdString)
             .centerCrop()
