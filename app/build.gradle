@@ -4,7 +4,7 @@ plugins {
     id 'com.google.gms.google-services'
 
     id "kotlin-android"
-    id "kotlin-android-extensions"
+    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
@@ -100,5 +100,9 @@ dependencies {
 
     // 파이차트
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //
+    //새로고침
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
 }

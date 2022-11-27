@@ -11,10 +11,12 @@ import android.widget.CalendarView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.MenuItemCompat.collapseActionView
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.search_play.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -110,11 +112,12 @@ open class MainActivity : AppCompatActivity() {
 
 
                 startActivity(intent)
-                return true
+                searchView.onActionViewCollapsed()
+                return false //키보드
 
             }
             override fun onQueryTextChange(p0: String): Boolean {
-                return true
+                return false //키보드
             }
         })
 

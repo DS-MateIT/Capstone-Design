@@ -59,7 +59,7 @@ class FavHolder(val binding: ItemFavoriteBinding) : RecyclerView.ViewHolder(bind
         val videoId = fav_listData.id
 
         // id값으로 썸네일 불러오기
-        val videoIdString = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg"
+        val videoIdString = "https://img.youtube.com/vi/" + videoId + "/sddefault.jpg"
         Glide.with(binding.root)
             .load(videoIdString)
             .centerCrop()

@@ -3,24 +3,28 @@ package com.example.myapplication
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.google.android.youtube.player.YouTubeStandalonePlayer
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.item_recent.*
-import kotlinx.android.synthetic.main.item_recent.view.*
-import kotlinx.android.synthetic.main.search_play.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.preference_main.*
+import kotlinx.android.synthetic.main.preference_main.swipe
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 import java.lang.String
+import java.util.*
 import kotlin.Throwable
 import kotlin.toString
+
 
 class HomeFragment: Fragment()  {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -45,6 +49,35 @@ class HomeFragment: Fragment()  {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        /*
+        //랜덤 해시태그
+        val Favhashtag: TextView = binding.Favhashtag
+        val Favhashtag2 : TextView = binding.Favhashtag2
+        val Favhashtag3 : TextView = binding.Favhashtag3
+        val randomTxT = resources.getStringArray(R.array.randomTxt)
+        val random = Random()
+//        val n1 = random.nextInt(randomTxT.size-1)
+//        val n2 = random.nextInt(randomTxT.size-1)
+//        val n3 = random.nextInt(randomTxT.size-1)
+//        Favhashtag.setText(randomTxT[n1])
+//        Favhashtag2.setText(randomTxT[n2])
+//        Favhashtag3.setText(randomTxT[n3])
+
+        for (i in 0 .. 3) {
+            for (i in 0 .. randomTxT.size-1){
+                var set = mutableSetOf<Int>(i)
+
+            }
+            Favhashtag.setText(randomTxT.set(i)!!.toString())
+        }
+
+
+
+         */
+
+
+
 
         val RECadapter = RecentItemAdapter(requireContext())
         RECadapter.rec_listData = rec_data
@@ -243,6 +276,18 @@ class HomeFragment: Fragment()  {
         })
 
 
+        /*
+        val swipe = binding.swipe
+        swipe.setOnRefreshListener {
+
+            refreshFragment(this, getFragmentManager())
+
+            swipe.isRefreshing = false
+        }
+
+         */
+
+
 
         /*
         //테스트2 시연용 - firebase 임시데이터
@@ -254,12 +299,25 @@ class HomeFragment: Fragment()  {
         */
 
 
+        //새로고침
+        binding.swipe.setOnRefreshListener {
+
+
+            swipe.isRefreshing = false
+        }
+
+
+
 
 
         return binding.root
 
 
     }
+
+
+
+
 
     /*
     //테스트 2 시연 - firebase 임시 데이터

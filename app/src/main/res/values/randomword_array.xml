@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="randomTxt">
+        <item>#예능</item>
+        <item>#영화 리뷰</item>
+        <item>#인터뷰</item>
+        <item>#배우</item>
+        <item>#과자</item>
+        <item>#코딩강의</item>
+        <item>#외국영화</item>
+        <item>#뉴스</item>
+        <item>#드라마</item>
+        <item>#굿즈</item>
+    </string-array>
+</resources>

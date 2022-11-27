@@ -1,121 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/main_theme"
     tools:context=".PreferenceFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/swipe">
 
-    >
-
-
-    <LinearLayout
+    <ScrollView
+        android:background="@color/main_theme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:textStyle="bold"
-            android:text="내가 자주 검색하는 검색어"
-            android:textSize="18dp"
-            android:textColor="#FFFFFF"/>
-
 
         <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/srchwordLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:textStyle="bold"
+                android:text="내가 자주 검색하는 검색어"
+                android:textSize="18dp"
+                android:textColor="#FFFFFF"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/srchwordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="연관 키워드"
+                android:textSize="18dp"
+                android:textColor="#FFFFFF"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/srchcrawLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/srchcrawLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/srchcrawLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="자주 언급된 단어"
+                android:textSize="18dp"
+                android:textColor="#FFFFFF"/>
+            <!--
+                    <ImageView
+                android:id="@+id/piechart"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:background="@color/text"/>-->
+
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:paddingBottom="100dp"/>
+
+
         </LinearLayout>
 
-        <TextView
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:text="연관 키워드"
-            android:textSize="18dp"
-            android:textColor="#FFFFFF"/>
-
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/srchcrawLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:orientation="horizontal">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/srchcrawLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:orientation="horizontal">
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/srchcrawLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:orientation="horizontal">
-        </LinearLayout>
-
-
-        <TextView
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="자주 언급된 단어"
-            android:textSize="18dp"
-            android:textColor="#FFFFFF"/>
-        <!--
-                <ImageView
-            android:id="@+id/piechart"
-            android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
-            android:background="@color/text"/>-->
-
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pie"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:paddingBottom="100dp"/>
-
-
-    </LinearLayout>
 
 
 
+    </ScrollView>
 
-</ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 

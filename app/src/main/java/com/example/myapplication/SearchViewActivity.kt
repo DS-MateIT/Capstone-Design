@@ -298,11 +298,12 @@ class SearchViewActivity : AppCompatActivity() {
                 })
 
                 startActivity(intent)
-                return true
+                searchView.onActionViewCollapsed()
+                return false //키보드
 
             }
             override fun onQueryTextChange(p0: String): Boolean {
-                return true
+                return false //키보드
             }
         })
 
