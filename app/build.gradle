@@ -10,6 +10,13 @@ plugins {
 
 /* 졸업시켜줘 */
 
+
+//Properties 선언 및 키값을 불러옴
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
+
 android {
     compileSdk 32
 
@@ -21,6 +28,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //api 키
+        resValue "string", "youtube_key", properties['youtube_key'] //string.xml에서 사용
+        buildConfigField "String", "youtube_key", properties['youtube_key']
     }
 
     buildFeatures{

@@ -29,8 +29,8 @@ object RetrofitClient { //singleton - 서버 호출이 필요할 때마다 객�
             var gson = GsonBuilder().setLenient().create()
 
             instance = Retrofit.Builder()
-                //.baseUrl("http://10.0.2.2:5000/") //에뮬레이터
-                .baseUrl("http://43.200.246.104:5000/") //1127서버
+                .baseUrl("http://10.0.2.2:5000/") //에뮬레이터
+                //.baseUrl("http://43.200.246.104:5000/") //1127서버
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client) // Retrofit 객체에 OkHttpClient 적용

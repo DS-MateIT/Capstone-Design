@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -18,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.SearchFilterBinding
 import com.google.firebase.auth.FirebaseAuth
+import io.grpc.android.BuildConfig
 import kotlinx.android.synthetic.main.search_play.*
 import retrofit2.*
 import java.io.IOException
@@ -138,6 +140,7 @@ class SearchViewActivity : AppCompatActivity(),
 class SearchViewActivity : AppCompatActivity() {
     lateinit var binding: SearchFilterBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -145,14 +148,12 @@ class SearchViewActivity : AppCompatActivity() {
         binding = com.example.myapplication.databinding.SearchFilterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val toolbar: Toolbar = findViewById(R.id.toolbar)
 
         //검색용
         val intent = intent
         val query = intent.getStringExtra("query")
         Log.d("query","$query") //문자열 확인
-
 
 
         //homeFragment 검색결과 가져오기
@@ -228,8 +229,6 @@ class SearchViewActivity : AppCompatActivity() {
             }
 
     }
-
-
 
     }
     //searchviewActivity에 있는 서치뷰
@@ -320,3 +319,4 @@ class SearchViewActivity : AppCompatActivity() {
 
 
 }
+
