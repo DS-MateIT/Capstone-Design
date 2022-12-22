@@ -32,51 +32,12 @@ class HomeFragment: Fragment()  {
     private val fav_data:MutableList<FavoriteItemData> = mutableListOf()
 
 
-    /*
-    //테스트2 - 시연용 firebase 임시 데이터
-    private lateinit var rv_recent: RecyclerView  // 최근 시청한 영상
-    private lateinit var rv_favor: RecyclerView   // 선호 카테고리 영상
-
-    var list_recent = ArrayList<VideoItem>()
-    val menu: Menu? = null
-
-    */
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        /*
-        //랜덤 해시태그
-        val Favhashtag: TextView = binding.Favhashtag
-        val Favhashtag2 : TextView = binding.Favhashtag2
-        val Favhashtag3 : TextView = binding.Favhashtag3
-        val randomTxT = resources.getStringArray(R.array.randomTxt)
-        val random = Random()
-//        val n1 = random.nextInt(randomTxT.size-1)
-//        val n2 = random.nextInt(randomTxT.size-1)
-//        val n3 = random.nextInt(randomTxT.size-1)
-//        Favhashtag.setText(randomTxT[n1])
-//        Favhashtag2.setText(randomTxT[n2])
-//        Favhashtag3.setText(randomTxT[n3])
-
-        for (i in 0 .. 3) {
-            for (i in 0 .. randomTxT.size-1){
-                var set = mutableSetOf<Int>(i)
-
-            }
-            Favhashtag.setText(randomTxT.set(i)!!.toString())
-        }
-
-
-
-         */
-
-
 
 
         val RECadapter = RecentItemAdapter(requireContext())
@@ -276,38 +237,12 @@ class HomeFragment: Fragment()  {
         })
 
 
-        /*
-        val swipe = binding.swipe
-        swipe.setOnRefreshListener {
-
-            refreshFragment(this, getFragmentManager())
-
-            swipe.isRefreshing = false
-        }
-
-         */
-
-
-
-        /*
-        //테스트2 시연용 - firebase 임시데이터
-        rv_recent = binding.itemRecent //최근 동영상 어댑터 1
-        loadrecyclerViewData()
-        rv_favor = binding.itemFavorite //선호 동영상 어댑터 2
-        loadrecyclerViewData()
-        setHasOptionsMenu(true)
-        */
-
 
         //새로고침
         binding.swipe.setOnRefreshListener {
 
-
             swipe.isRefreshing = false
         }
-
-
-
 
 
         return binding.root
@@ -315,38 +250,6 @@ class HomeFragment: Fragment()  {
 
     }
 
-
-
-
-
-    /*
-    //테스트 2 시연 - firebase 임시 데이터
-    private fun loadrecyclerViewData() {
-        //val reference = FirebaseDatabase.getInstance().getReference("videos")
-        val reference = Firebase.database.getReference("videos")
-        reference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                //list_recent.clear()
-                // db 데이터를 가져와서 그 중 썸네일 이미지를 recyclerview에 표시
-
-
-                for (dataSnapshot1 in dataSnapshot.children) {
-                    val item: VideoItem? = dataSnapshot1.getValue(VideoItem::class.java)
-                    if (item != null) {
-                        list_recent.add(item)
-                    }
-                    //val adapter1 = RecentItemAdapter(requireContext(), list_recent)
-                    //rv_recent.adapter = adapter1
-
-
-                    //rv_favor.adapter = adapter1
-                }
-
-            }
-            override fun onCancelled(databaseError: DatabaseError) {}
-        })
-    }
-*/
 
 
 }

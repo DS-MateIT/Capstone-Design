@@ -30,7 +30,6 @@ class PreferenceFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //val view = inflater.inflate(R.layout.preference_main, container, false)
         val binding = com.example.myapplication.databinding.PreferenceMainBinding.inflate(
             inflater,
             container,
@@ -48,13 +47,10 @@ class PreferenceFragment: Fragment() {
                         try {
 
                             val srchresult = response.body()?.get(0)?.srch_keyword //가장 최근검색어 출력해보기
-                            //binding.srchtest.text = srchresult.toString()
 
                                 //내가 자주 검색하는 검색어 버튼 생성
                                 for (srchkeyword in 0 until 3) { //srchresult!!.length ->  index오류이유? 3으로 변경해봄
                                     var srchkeyword = Button(context).apply {
-                                        //width = 30
-                                        //height = 20
                                         background = getDrawable(context, R.drawable.hashtag)
                                         text = "#" + response.body()?.get(srchkeyword)?.srch_keyword
                                         val lp = LinearLayout.LayoutParams(
@@ -78,8 +74,6 @@ class PreferenceFragment: Fragment() {
                                 for (i in 0 until 3) {
                                     //연관검색어 1
                                     var srchcraw = Button(context).apply {
-                                        //width = 30
-                                        //height = 20
                                         background = getDrawable(context, R.drawable.hashtag)
                                         text =
                                             "#" + response.body()?.get(i)?.srch_craw1 //craw1,2,3 다 적용하기
@@ -98,8 +92,6 @@ class PreferenceFragment: Fragment() {
 
                                     //연관검색어 2
                                     var srchcraw2 = Button(context).apply {
-                                        //width = 30
-                                        //height = 20
                                         background = getDrawable(context, R.drawable.hashtag)
                                         text =
                                             "#" + response.body()?.get(i)?.srch_craw2 //craw1,2,3 다 적용하기
@@ -118,8 +110,6 @@ class PreferenceFragment: Fragment() {
 
                                     //연관검색어 3
                                     var srchcraw3 = Button(context).apply {
-                                        //width = 30
-                                        //height = 20
                                         background = getDrawable(context, R.drawable.hashtag)
                                         text =
                                             "#" + response.body()?.get(i)?.srch_craw3 //craw1,2,3 다 적용하기
@@ -161,58 +151,6 @@ class PreferenceFragment: Fragment() {
                 }
 
             })
-
-/*
-* //S3 파이차트 불러오기
-            // Cognito 샘플 코드. CredentialsProvider 객체 생성
-            val credentialsProvider = CognitoCachingCredentialsProvider(
-                context,
-                "us-east-2:98f15302-78cb-4d26-9ae4-c4ef2c378ccd",  // 자격 증명 풀 ID
-                Regions.US_EAST_2 // 리전
-            )
-
-            // 반드시 호출
-            TransferNetworkLossHandler.getInstance(context)
-
-            // TransferUtility 객체 생성
-            val transferUtility = TransferUtility.builder()
-                .context(context)
-                .defaultBucket("mateityoutube") // 디폴트 버킷 이름.
-                .s3Client(AmazonS3Client(credentialsProvider, Region.getRegion(Regions.US_EAST_2)))
-                .build()
-
-            // 다운로드 실행. object: "wordcloud_test.png". 두 번째 파라메터는 Local경로 File 객체.
-            // 대상 객체 ex) "Bucket_Name/SomeFile.mp4"
-            val downloadObserver = transferUtility.download("piechart.png", File(context?.cacheDir, "/piechart.png"))
-
-            // 다운로드 과정을 알 수 있도록 Listener를 추가
-            downloadObserver.setTransferListener(object : TransferListener {
-                override fun onStateChanged(id: Int, state: TransferState) {
-                    if (state == TransferState.COMPLETED) {
-                        Log.d("AWS", "DOWNLOAD Completed!")
-                        val imgpath = "${context?.cacheDir}/piechart.png" // 내부 저장소에 저장되어 있는 이미지 경로
-                        val bm = BitmapFactory.decodeFile(imgpath)
-
-                        binding.piechart.setImageBitmap(bm)
-                        //내부 저장소에 저장된 이미지를 이미지뷰에 셋
-                        //이미지 뷰에 나타내기
-                    }
-                }
-
-                override fun onProgressChanged(id: Int, current: Long, total: Long) {
-                    try {
-                        val done = (((current.toDouble() / total) * 100.0).toInt()) //as Int
-                        Log.d("AWS", "DOWNLOAD - - ID: $id, percent done = $done")
-                    } catch (e: Exception) {
-                        Log.d("AWS", "Trouble calculating progress percent", e)
-                    }
-                }
-
-                override fun onError(id: Int, ex: Exception) {
-                    Log.d("AWS", "DOWNLOAD ERROR - - ID: $id - - EX: ${ex.message.toString()}")
-                }
-            })
-        //파이차트 끝*/
 
 
         // 파이어 베이스에서 현재 접속한 유저의 정보 가져옴
@@ -258,15 +196,6 @@ class PreferenceFragment: Fragment() {
                         dataset.valueTextColor = resources.getColor(R.color.text)
                         dataset.setValueFormatter(PercentFormatter()) // 백분율 소수점 한자리
 
-                        /*
-                        * // legend 설정 하나 밖에 안나와서 무쓸모,,,
-                        *                     val legend: Legend = binding.pie.getLegend()
-                        legend.form = Legend.LegendForm.CIRCLE
-                        legend.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
-                        legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
-                        legend.orientation = Legend.LegendOrientation.HORIZONTAL
-                        legend.setDrawInside(false)
-                        legend.textColor = resources.getColor(R.color.text)*/
 
                         binding.pie.setCenterTextColor(R.color.main_theme)
                         binding.pie.description.isEnabled = false

@@ -70,29 +70,3 @@ class FavHolder(val binding: ItemFavoriteBinding) : RecyclerView.ViewHolder(bind
 
 
 
-
-
-/*
-//테스트 2 시연 - firebase 임시 데이터
-class FavoriteItemAdapter(private val items: ArrayList<favoriteItemData> ) : RecyclerView.Adapter<FavoriteItemAdapter.ViewHolder>() {
-
-
-    //보여줄 아이템 개수가 몇개인지 알려줌
-    override fun getItemCount(): Int = items.size
-
-    //생성된 view에 보여줄 데이터를 설정
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
-    }
-
-    //보여줄 아이템 개수만큼 view를 생성
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_favorite,parent,false)
-        return FavoriteItemAdapter.ViewHolder(view)
-    }
-
-    //viewHolder 단위 객체로 view 의 데이터를 설정
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-}
-
- */

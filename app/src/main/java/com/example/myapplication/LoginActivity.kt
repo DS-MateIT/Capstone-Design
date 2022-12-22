@@ -53,20 +53,7 @@ class LoginActivity: AppCompatActivity() {
         val signupButton = findViewById<Button>(R.id.signup_button)
         signupButton.setOnClickListener {
             startActivity(Intent(this, Signup::class.java))
-            /*
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
 
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if(task.isSuccessful) {
-                        Toast.makeText(this, "회원가입 성공.", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, "회원가입 실패.", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-             */
         }
 
         val googleSignupbtn = findViewById<SignInButton>(R.id.google_signin_btn)

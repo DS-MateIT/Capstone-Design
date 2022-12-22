@@ -79,47 +79,6 @@
                         android:textColor="#FFFFFF"
                         android:textSize="14dp" />
 
-                    <!--
-                    <TextView
-                        android:id="@+id/hashtag2"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:padding="5dp"
-                        android:layout_width="wrap_content"
-                        android:background="@drawable/border_round"
-                        android:layout_height="wrap_content"
-                        android:text="#노그로"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14dp" />
-
-                    <TextView
-                        android:id="@+id/hashtag3"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:padding="5dp"
-                        android:layout_width="wrap_content"
-                        android:background="@drawable/border_round"
-                        android:layout_height="wrap_content"
-                        android:text="#설현"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14dp" />
-
-                    <TextView
-                        android:id="@+id/hashtag4"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:padding="5dp"
-                        android:layout_width="wrap_content"
-                        android:background="@drawable/border_round"
-                        android:layout_height="wrap_content"
-                        android:text="#한소희"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14dp" />
-                    -->
-
 
                 </LinearLayout>
 

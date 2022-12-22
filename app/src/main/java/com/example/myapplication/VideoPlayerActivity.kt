@@ -53,16 +53,6 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
     ) {
         Log.d("player","실패")
     }
-/*
-    lateinit var videos: VideoItem
-    lateinit var player: SimpleExoPlayer
-    lateinit var factory: DataSource.Factory
-    lateinit var mediaFactory: ProgressiveMediaSource.Factory
-
-    var db = Firebase.database
-    var storageRef = Firebase.storage.reference
-
-*/
 
 
 
@@ -118,15 +108,6 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                     if (response.body()?.size != 0) {
                         val result = response.body()?.get(0)?.rate
 
-                        /*val result0 = response.body()?.get(i)?.result0
-                        val result1 = response.body()?.get(i)?.result1
-                        val result2 = response.body()?.get(i)?.result2
-                        val result3 = response.body()?.get(i)?.result3
-                        val result4 = response.body()?.get(i)?.result4
-
-                        val resultList: List<Float> =
-                            listOf(result0, result1, result2, result3, result4) as List<Float>
-    */
                         Log.d("rate", result.toString())
 
                         if (result != null) {
@@ -247,62 +228,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                 Toast.makeText(this, "북마크 삭제", Toast.LENGTH_LONG).show()
             }
         }
-        /*
-        factory = DefaultDataSourceFactory(applicationContext, "Ex90ExoPlayer") // 매개 두번째는 임의로 그냥 적음
-        mediaFactory= ProgressiveMediaSource.Factory(factory)
-        // recyclerview에서 아이템 클릭시 전송된 데이터를 가져옴
 
-         */
-        /*
-        var videos = intent.getSerializableExtra("videos") as SearchResultSnippet
-
-
-        var videoTitle = findViewById<TextView>(R.id.videoTitleTextView)
-        videoTitle.text = videos.title
-        */
-
-        /*
-        // 비디오 가져오기
-        videoPlayerView = findViewById(R.id.videoPlayerView)
-        val mediaItem = MediaItem.fromUri(videos.sources!!)
-        val mediaSource = mediaFactory.createMediaSource(mediaItem)
-        //val mediaSource = mediaFactory.createMediaSource(Uri.parse(videos.sources))
-        //위에서 만든 비디오 데이터 소스를 플레이어에게 로딩하도록....
-        player = SimpleExoPlayer.Builder(applicationContext).build()
-        player.playWhenReady = true   // 준비가 되면 바로 재생
-        player.setMediaSource(mediaSource)
-        player.prepare()
-
-        videoPlayerView.player = player
-
-
-
-
-        // 워드클라우드
-        var wordCloud = findViewById<ImageView>(R.id.wordCloud)
-        //var url = db.getReference("videos").child("7").child("wordcloud")
-        if(videoTitle.text == "설현 최근 모습, 헨리 그사건 이후 근황.................요즘 화제된 이슈 TOP24"){
-            var imagesRef = storageRef.child("images/word_cloud_SEOLHYUN.png").downloadUrl.addOnSuccessListener {
-                Glide.with(this).load(it).override(320,150).into(wordCloud)
-            }
-        }
-
-        if(videoTitle.text == "본격 공개! 설현의 뷰티 노하우 ‘심쿵 꿀팁’ @본격연예 한밤 13회 20170228"){
-            var imageRef = storageRef.child("images/word_cloud_SEOLHYUN2_HANBAM.png").downloadUrl.addOnSuccessListener{
-                Glide.with(this).load(it).override(320,150).into(wordCloud)
-            }
-        }
-        getresult()
-
-
-    }
-    override fun onStop() {
-        videoPlayerView.player = null
-        player.release()   // 릴리스해주지 않으면 부하가 와서 영상을 많이 재생할 수 없음
-        super.onStop()
-    }
-
-*/
     }
     
     //S3 워드클라우드 불러오기
@@ -397,37 +323,6 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
                 })
         }
     }
-    /*
-    * private fun sendReq() {
-        var input = HashMap<String, String>()
-        input["title"] = "TEST입니다"
-        RetrofitBuilder.api.post(input).enqueue(object: Callback<PostDTO> {
-            override fun onResponse(call: Call<PostDTO>, response: Response<PostDTO>) {
-                if(response.isSuccessful) {
-                    Log.d("test", "연결성공")
-                    var a: PostDTO = response.body()!!
-                }
-            }
-
-            override fun onFailure(call: Call<PostDTO>, t: Throwable) {
-                Log.d("test", "연결실패")
-            }
-
-        })
-    }
-
-    object RetrofitBuilder {
-        var api: RetrofitPost
-
-        init {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:5000")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            api = retrofit.create(RetrofitPost::class.java)
-        }
-    }*/
 
 
 }

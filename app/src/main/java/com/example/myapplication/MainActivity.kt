@@ -29,7 +29,6 @@ open class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -66,14 +65,7 @@ open class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         val searchView = menu?.findItem(R.id.menu_search)?.actionView as SearchView
-        //검색 버튼 클릭
-        //val searchView = menu.findItem(R.id.menu_search)
 
-        /*searchView.setOnMenuItemClickListener {
-            val intent = Intent(context, SearchViewActivity::class.java)
-            startActivity(intent)
-            return@setOnMenuItemClickListener true
-       */
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 // MainActivity -> SearchViewActivity 검색어 보내기 //검색용
@@ -81,7 +73,6 @@ open class MainActivity : AppCompatActivity() {
                 intent.putExtra("query", "$query")
 
                 // MainActivity -> VideoPlayerActivity 검색어 보내기 //상세 페이지용
-                //val srchIntent = Intent(this@MainActivity,MyAdapter::class.java)
                 intent.putExtra("srchquery", "$query")
 
 
